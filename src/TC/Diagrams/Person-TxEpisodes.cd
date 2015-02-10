@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="This is a Business Domain Model and not necessarily a direct reflection of database schema.&#xD;&#xA;&#xD;&#xA;For instance the MasterStatus and MasterTxNum do not have a direct correlation to any database table.&#xD;&#xA;They would be computated on the fly for front-end users.&#xD;&#xA;&#xD;&#xA;The Status could contain info for multiple episodes (limited to the last episode for each distinct organ)&#xD;&#xA;// Ex. 'Status(Type-Phase-{Laterality}Discriminator) | ...'&#xD;&#xA;&#xD;&#xA;MasterShortStatus     &#xD;&#xA;// Ex. 'Active(R-Eval-LK) | Active(R-WL-L) |...'         &#xD;&#xA;MasterStatus         	&#xD;&#xA;// Ex. 'Active(Recipient-Evaluation-LeftKidney) | Active(Recipient-WaitListed-Lung) |...'">
+    <Position X="3.344" Y="5.188" Height="2.229" Width="10.252" />
+  </Comment>
+  <Class Name="TC.Domain.Person">
+    <Position X="3" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAABAACCAIAAgAAAAEAAIAAAAgAEAEAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Person.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Episodes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TC.Domain.SolidOrganTransplant.RecipientEpisode">
+    <Position X="10.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAACABABAAAAAAAAEACAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Domain\{ Episode }\SolidOrganTransplant\RecipientEpisode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.SolidOrganTransplant.DonorEpisode">
+    <Position X="8" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAgAAACgAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\{ Episode }\SolidOrganTransplant\DonorEpisode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.EpisodeReferral">
+    <Position X="5.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAgAAEAAAAgCBAAAAAAAAAIAAA=</HashCode>
+      <FileName>Domain\{ Episode }\EpisodeReferral.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.SolidOrganTransplant.SolidOrganTransplant">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="TC.Domain.SolidOrganTransplant.SolidOrganTransplant.Types" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Domain\{ Episode }\SolidOrganTransplant\SolidOrganTransplant.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="TC.Domain.SolidOrganTransplant.SolidOrganTransplant.Phases" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Domain\{ Episode }\SolidOrganTransplant\SolidOrganTransplant.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="TC.Domain.SolidOrganTransplant.SolidOrganTransplant.Discriminators" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Domain\{ Episode }\SolidOrganTransplant\SolidOrganTransplant.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAABAE=</HashCode>
+      <FileName>Domain\{ Episode }\SolidOrganTransplant\SolidOrganTransplant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.Episode">
+    <Position X="5.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAABAAAAAgAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Domain\{ Episode }\Episode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Referral" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TC.Domain.SolidOrganTransplant.TxEpisode">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Domain\{ Episode }\SolidOrganTransplant\TxEpisode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.SolidOrganTransplant.TxPerson">
+    <Position X="11.75" Y="0.5" Width="1.75" />
+    <InheritanceLine Type="TC.Domain.Person" FixedToPoint="true">
+      <Path>
+        <Point X="3.875" Y="0.5" />
+        <Point X="3.875" Y="0.26" />
+        <Point X="12.552" Y="0.26" />
+        <Point X="12.552" Y="0.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Domain\{ Episode }\SolidOrganTransplant\TxPerson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

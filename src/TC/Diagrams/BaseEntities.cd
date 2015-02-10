@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="This { Admission } subdomain could be moved to it's own .cd">
+    <Position X="7.723" Y="2.49" Height="0.478" Width="2.138" />
+  </Comment>
+  <Comment CommentText="All of the { Admission } entities have a natural key that looks lke one of the above definitions.&#xD;&#xA;&#xD;&#xA;The only difference is in the discriminator (Ex. Diagnosis) for the third propery of every one-to-many association.&#xD;&#xA;&#xD;&#xA;AdmissionBedHistory is the only exception because it actually has a synthetic db identifier in addition to the natural key">
+    <Position X="11.448" Y="6.332" Height="3.322" Width="1.658" />
+  </Comment>
+  <Class Name="TC.Domain.MultiEntity&lt;T&gt;">
+    <Position X="4.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Domain\[ Helpers ]\BaseEntities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zen.Core.DomainEntity&lt;T&gt;">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Zen.Core.DomainObject">
+    <Position X="0.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TC.Domain.EnteredByEntity&lt;T&gt;" Collapsed="true">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAMAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\[ Helpers ]\BaseEntities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.MultiEnteredByEntity&lt;T&gt;">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAMAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\[ Helpers ]\BaseEntities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.Tenant">
+    <Position X="4.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAIAAIABAAAAAIgQAAAAAAAgAACAQA=</HashCode>
+      <FileName>Domain\Tenant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.Admission">
+    <Position X="6" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABIQAAQCABAFCAJBBQECkAIQgQQAAUASAIAEAhAsA=</HashCode>
+      <FileName>Domain\{ Admission }\Admission.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Cancelled" />
+      <Property Name="DischargeCancelled" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Reasons" />
+      <Property Name="BedHistory" />
+      <Property Name="Diagnosis" />
+      <Property Name="InvProcedures" />
+      <Property Name="Therapy" />
+      <Property Name="DischargeTherapy" />
+      <Property Name="DischargeTo" />
+      <Property Name="FollowUp" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TC.Domain.AdmissionBedHistory" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <InheritanceLine Type="TC.Domain.MultiEnteredByEntity&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.867" />
+        <Point X="6.75" Y="3.058" />
+        <Point X="11.192" Y="3.058" />
+        <Point X="11.192" Y="3.813" />
+        <Point X="11" Y="3.813" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAABAAAACAAAAgSAAAAAAIAAAAAEQ=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionBedHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionCancelled" Collapsed="true">
+    <Position X="9.5" Y="4.25" Width="1.5" />
+    <InheritanceLine Type="TC.Domain.MultiEnteredByEntity&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.867" />
+        <Point X="6.75" Y="3.058" />
+        <Point X="11.192" Y="3.058" />
+        <Point X="11.192" Y="4.625" />
+        <Point X="11" Y="4.625" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAQAIAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionCancelled.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionDiagnosis" Collapsed="true">
+    <Position X="9.5" Y="5" Width="1.5" />
+    <InheritanceLine Type="TC.Domain.MultiEnteredByEntity&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.867" />
+        <Point X="6.75" Y="3.058" />
+        <Point X="11.192" Y="3.058" />
+        <Point X="11.192" Y="5.375" />
+        <Point X="11" Y="5.375" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionDiagnosis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionDischargeCancelled" Collapsed="true">
+    <Position X="9.5" Y="5.75" Width="1.5" />
+    <InheritanceLine Type="TC.Domain.MultiEnteredByEntity&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.867" />
+        <Point X="6.75" Y="3.058" />
+        <Point X="11.192" Y="3.058" />
+        <Point X="11.192" Y="6.125" />
+        <Point X="11" Y="6.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAEAAAAAAAAAAAAAAAAAAAAACAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionDischargeCancelled.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionDischargeTherapy" Collapsed="true">
+    <Position X="9.5" Y="6.5" Width="1.5" />
+    <InheritanceLine Type="TC.Domain.MultiEnteredByEntity&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.867" />
+        <Point X="6.75" Y="3.058" />
+        <Point X="11.192" Y="3.058" />
+        <Point X="11.192" Y="6.875" />
+        <Point X="11" Y="6.875" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionDischargeTherapy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionDischargeTo" Collapsed="true">
+    <Position X="9.5" Y="7.25" Width="1.5" />
+    <InheritanceLine Type="TC.Domain.MultiEnteredByEntity&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.867" />
+        <Point X="6.75" Y="3.058" />
+        <Point X="11.192" Y="3.058" />
+        <Point X="11.192" Y="7.625" />
+        <Point X="11" Y="7.625" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionDischargeTo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionFollowUp" Collapsed="true">
+    <Position X="9.5" Y="8" Width="1.5" />
+    <InheritanceLine Type="TC.Domain.MultiEnteredByEntity&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.867" />
+        <Point X="6.75" Y="3.058" />
+        <Point X="11.192" Y="3.058" />
+        <Point X="11.192" Y="8.375" />
+        <Point X="11" Y="8.375" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionFollowUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionInvProcedures" Collapsed="true">
+    <Position X="9.5" Y="8.75" Width="1.5" />
+    <InheritanceLine Type="TC.Domain.MultiEnteredByEntity&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.867" />
+        <Point X="6.75" Y="3.058" />
+        <Point X="11.192" Y="3.058" />
+        <Point X="11.192" Y="9.125" />
+        <Point X="11" Y="9.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionInvProcedures.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionReasons" Collapsed="true">
+    <Position X="9.5" Y="9.5" Width="1.5" />
+    <InheritanceLine Type="TC.Domain.MultiEnteredByEntity&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.867" />
+        <Point X="6.75" Y="3.058" />
+        <Point X="11.192" Y="3.058" />
+        <Point X="11.192" Y="9.875" />
+        <Point X="11" Y="9.875" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionReasons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionTherapy" Collapsed="true">
+    <Position X="9.5" Y="10.25" Width="1.5" />
+    <InheritanceLine Type="TC.Domain.MultiEnteredByEntity&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.867" />
+        <Point X="6.75" Y="3.058" />
+        <Point X="11.192" Y="3.058" />
+        <Point X="11.192" Y="10.625" />
+        <Point X="11" Y="10.625" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionTherapy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionId">
+    <Position X="11.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\Admission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TC.Domain.AdmissionDiagnosisId">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAACAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\{ Admission }\AdmissionDiagnosis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

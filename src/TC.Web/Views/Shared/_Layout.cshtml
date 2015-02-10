@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - TransChart WEB</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/modernizr")    
+    @Scripts.Render("~/bundles/jquery")     
+</head>
+<body>
+
+<div class="container body-content">
+    @if (Request.IsAuthenticated)
+    {<!-- && Request.Url <> ?? -->
+        @Html.Partial("_TopNavPartial")
+        <div class id="main-content" class="row">
+            <div id="sidebar" class="col-sm-2 hidden-xs" style="font-size: 0.8em; border-right: 2px #d3d3d3 solid">
+                @Html.Partial("_SideBarPartial")
+            </div>
+            <div id="main" class="col-sm-10 col-xs-12" style="border-top: 2px #d3d3d3 solid">
+                @RenderBody()
+                @RenderSection("SPAViews", required: false)
+            </div>
+        </div>
+        
+    }
+    else
+    {
+        @RenderBody()
+        @RenderSection("SPAViews", required: false)
+    }
+    
+    <hr/>
+    <footer>
+        @*<p>Version: 2015.02.05 - 5.2.01.demo</p>*@
+    </footer>
+</div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

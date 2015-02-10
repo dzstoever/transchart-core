@@ -1,0 +1,56 @@
+﻿@model TC.ViewModels.PatientSearchVM
+
+<div class="row" style="font-family: Consolas;">
+            <div class="col-md-12">
+                <fieldset class="well" style="background-color: transparent; margin-bottom: 0;">
+                    <div class="col-sm-5 hidden-xs" style="text-align: right; font-size: 1.1em;">
+                        <label>MRN:</label><br/>
+                        <label>SSN:</label><br/>
+                        <label>First Name:</label><br/>
+                        <label>Middle Name:</label><br/>                        
+                        <label>Last Name:</label><br/>                                                    
+                    </div>
+                    <div class="col-sm-7" style="padding-left: 0;">
+                        <label class="hidden-sm hidden-md hidden-lg">MRN:<br/></label>
+                            <input type="text" id="txtMRN" data-bind="value: searchMRN"/><br/>
+                        <label class="hidden-sm hidden-md hidden-lg">SSN:<br/></label>
+                            <input type="text" id="txtSSN" data-bind="value: searchSSN"/><br/>
+                        <label class="hidden-sm hidden-md hidden-lg">First Name:<br/></label>
+                            <input type="text" id="txtFirst" data-bind="value: searchFirstName"><br/>
+                        <label class="hidden-sm hidden-md hidden-lg">Middle Name:<br/></label>
+                            <input type="text" id="txtMiddle" data-bind="value: searchMiddleName"><br/>
+                        <label class="hidden-sm hidden-md hidden-lg">Last Name:<br/></label>
+                            <input type="text" id="txtLast" data-bind="value: searchLastName"><br/>
+                    </div>
+                </fieldset>
+                <fieldset class="well" style="background-color: transparent; padding: 10px; font-family: Consolas;">                    
+                    <div class="col-sm-12 hidden-xs" style="text-align: center">
+                                                
+                        <input id="btnGetPerson" type="button" value="Get Person" onclick=" FetchPerson() ">
+                        <input id="btnUpdatePerson" type="button" value="Update Person" onclick=" UpdatePerson() ">
+                        <input id="btnGetPeople" type="button" value="Get People" onclick=" FetchPeople() ">
+
+                        <!--
+                        <a href="http://asp.net" class="btn btn-default btn-sm" style="padding-left: 30px; padding-right: 30px;">&nbsp;Enter</a>&nbsp;&nbsp;                                                
+                        <a href="http://asp.net" class="btn btn-default btn-sm" style="padding-left: 30px; padding-right: 30px;">Census</a>
+                        -->
+                    </div>
+                    <div class="col-xs-12 hidden-sm hidden-md hidden-lg" style="text-align: center">
+                        <a href="http://asp.net" class="btn btn-default btn-sm" style="width: 100%;">&nbsp;Enter</a><br/>                                                
+                        <a href="http://asp.net" class="btn btn-default btn-sm" style="width: 100%;">Census</a>                   
+                    </div>
+                </fieldset>                
+            </div>
+        </div>
+
+<div id="results">
+    <h5>Results</h5>
+
+    @*<ul class="patients" data-bind="foreach: patient">
+                <li data-bind="text: $data,
+                                css: { selected: $data == $root.selectedPatientID() },
+                                click: $root.goToPatient"></li>
+            </ul>*@
+    <hr/>
+    <p class="version" data-bind="text: myHometown"></p>
+</div>
