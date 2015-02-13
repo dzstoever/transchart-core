@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TC" namespace="TC.Doman" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Physician__Multi" table="Physician_Multi" lazy="true" >
+    <composite-id>
+      <key-property name="MRN" column="MRN" />
+      <key-property name="PID" column="PID" />
+      <key-property name="Entered_Time" column="EnteredTime" />
+      <key-property name="Tenant_ID" column="TenantID" />
+    </composite-id>
+    <property name="Cur">
+      <column name="Cur" sql-type="bit" not-null="true" />
+    </property>
+    <property name="Mod_Del">
+      <column name="ModDel" sql-type="char" not-null="false" />
+    </property>
+    <property name="Phy_Type">
+      <column name="PhyType" sql-type="varchar" not-null="false" />
+    </property>
+    <property name="Entered_By">
+      <column name="EnteredBy" sql-type="varchar" not-null="false" />
+    </property>
+    <property name="Entered_Date">
+      <column name="EnteredDate" sql-type="datetime" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>
