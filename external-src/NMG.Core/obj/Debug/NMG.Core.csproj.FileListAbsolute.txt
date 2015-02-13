@@ -29,5 +29,6 @@ C:\$\TC-GIT\zen-core\external-src\NMG.Core\obj\Debug\NMG.Core.pdb
 C:\$\TC-GIT\zen-core\external-src\NMG.Core\obj\Debug\NMG.Core.csprojResolveAssemblyReference.cache
 C:\$\git\transchart-core\external-src\NMG.Core\bin\Debug\NMG.Core.dll
 C:\$\git\transchart-core\external-src\NMG.Core\bin\Debug\NMG.Core.pdb
+C:\$\git\transchart-core\external-src\NMG.Core\obj\Debug\NMG.Core.csprojResolveAssemblyReference.cache
 C:\$\git\transchart-core\external-src\NMG.Core\obj\Debug\NMG.Core.dll
 C:\$\git\transchart-core\external-src\NMG.Core\obj\Debug\NMG.Core.pdb

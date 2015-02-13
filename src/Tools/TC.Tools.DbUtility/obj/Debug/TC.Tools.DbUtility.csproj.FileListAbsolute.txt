@@ -1,11 +1,3 @@
-C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.csprojResolveAssemblyReference.cache
-C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.App.resources
-C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.ConnectionDialog.resources
-C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.Properties.Resources.resources
-C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.UpstateControl.resources
-C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.csproj.GenerateResource.Cache
-C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\DatabaseUtility.exe
-C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\DatabaseUtility.pdb
 C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\bin\Debug\DatabaseUtility.exe.config
 C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\bin\Debug\DatabaseUtility.exe
 C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\bin\Debug\DatabaseUtility.pdb
@@ -23,3 +15,11 @@ C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\bin\Debug\NMG.Core.pdb
 C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\bin\Debug\FastColoredTextBox.xml
 C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\bin\Debug\Iesi.Collections.xml
 C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\bin\Debug\NHibernate.xml
+C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.csprojResolveAssemblyReference.cache
+C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.App.resources
+C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.ConnectionDialog.resources
+C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.Properties.Resources.resources
+C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.UpstateControl.resources
+C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.csproj.GenerateResource.Cache
+C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\DatabaseUtility.exe
+C:\$\git\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\DatabaseUtility.pdb
