@@ -1,8 +1,0 @@
-C:\$\svn\Zen-TransChart\Domain\src\TC\bin\Debug\TC.dll.config
-C:\$\svn\Zen-TransChart\Domain\src\TC\bin\Debug\TC.dll
-C:\$\svn\Zen-TransChart\Domain\src\TC\bin\Debug\TC.pdb
-C:\$\svn\Zen-TransChart\Domain\src\TC\bin\Debug\Zen.dll
-C:\$\svn\Zen-TransChart\Domain\src\TC\bin\Debug\Zen.pdb
-C:\$\svn\Zen-TransChart\Domain\src\TC\obj\Debug\TC.csprojResolveAssemblyReference.cache
-C:\$\svn\Zen-TransChart\Domain\src\TC\obj\Debug\TC.dll
-C:\$\svn\Zen-TransChart\Domain\src\TC\obj\Debug\TC.pdb

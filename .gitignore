@@ -48,7 +48,6 @@ Temporary Items
 # Visual Studio
 bin
 obj
-*.v11.suo
 *.suo
 *.user
 
