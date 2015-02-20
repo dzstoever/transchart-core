@@ -37,3 +37,6 @@ X:\github\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtil
 X:\github\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\TC.Tools.DbUtility.csproj.GenerateResource.Cache
 X:\github\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\DatabaseUtility.exe
 X:\github\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\DatabaseUtility.pdb
+C:\$\github\transchart-core\src\Tools\TC.Tools.DbUtility\bin\Debug\DatabaseUtility.exe.config
+C:\$\github\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\DatabaseUtility.exe
+C:\$\github\transchart-core\src\Tools\TC.Tools.DbUtility\obj\Debug\DatabaseUtility.pdb
