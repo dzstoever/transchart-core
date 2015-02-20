@@ -17,17 +17,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
 # Thumbnails
 ._*
 
@@ -42,17 +31,19 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Subversion
-.svn
-
 # Visual Studio
 bin
 obj
+*.cache
 *.suo
 *.user
 
 # ReSharper
 _ReSharper.*
 
+# Subversion
+.svn
+
+# TC
 TC.Database
-*.cache
+
