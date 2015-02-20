@@ -82,25 +82,27 @@ namespace TC.Tools.DbUtility
 
         private string GetDefaultConnectionStringForServerType(ServerType serverType)
         {
-            switch (serverType)
-            {
-                case ServerType.Oracle:
-                    return StringConstants.ORACLE_CONN_STR_TEMPLATE;
-                case ServerType.SqlServer:
-                    return StringConstants.SQL_CONN_STR_TEMPLATE;
-                case ServerType.MySQL:
-                    return StringConstants.MYSQL_CONN_STR_TEMPLATE;
-                case ServerType.SQLite:
-                    return StringConstants.SQLITE_CONN_STR_TEMPLATE;
-                case ServerType.Sybase:
-                    return StringConstants.SYBASE_CONN_STR_TEMPLATE;
-                case ServerType.Ingres:
-                    return StringConstants.INGRES_CONN_STR_TEMPLATE;
-                case ServerType.CUBRID:
-                    return StringConstants.CUBRID_CONN_STR_TEMPLATE;
-                default:
-                    return StringConstants.POSTGRESQL_CONN_STR_TEMPLATE;
-            }
+            return StringConstants.SQL_CONN_STR_TEMPLATE;
+
+            //switch (serverType)
+            //{
+                //case ServerType.Oracle:
+                //    return StringConstants.ORACLE_CONN_STR_TEMPLATE;
+                //case ServerType.SqlServer:
+                //    return StringConstants.SQL_CONN_STR_TEMPLATE;
+                //case ServerType.MySQL:
+                //    return StringConstants.MYSQL_CONN_STR_TEMPLATE;
+                //case ServerType.SQLite:
+                //    return StringConstants.SQLITE_CONN_STR_TEMPLATE;
+                //case ServerType.Sybase:
+                //    return StringConstants.SYBASE_CONN_STR_TEMPLATE;
+                //case ServerType.Ingres:
+                //    return StringConstants.INGRES_CONN_STR_TEMPLATE;
+                //case ServerType.CUBRID:
+                //    return StringConstants.CUBRID_CONN_STR_TEMPLATE;
+                //default:
+                //    return StringConstants.POSTGRESQL_CONN_STR_TEMPLATE;
+            //}
         }
 
         private void BindData()

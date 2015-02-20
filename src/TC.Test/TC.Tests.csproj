@@ -124,11 +124,11 @@
       <Project>{467a8ead-c910-45da-9bff-882accf39eaa}</Project>
       <Name>TC</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zen.Data\Zen.Data.csproj">
+    <ProjectReference Include="..\..\..\zen-core\src\Zen.Data\Zen.Data.csproj">
       <Project>{6654d1eb-d5cd-4618-a326-1808894f8d27}</Project>
       <Name>Zen.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zen\Zen.csproj">
+    <ProjectReference Include="..\..\..\zen-core\src\Zen\Zen.csproj">
       <Project>{4d1b27dd-ad19-4405-90c0-e03bad50febf}</Project>
       <Name>Zen</Name>
     </ProjectReference>

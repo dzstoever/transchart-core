@@ -132,7 +132,7 @@
     <Compile Include="{ Models }\ViewModels\HomeVMs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zen\Zen.csproj">
+    <ProjectReference Include="..\..\..\zen-core\src\Zen\Zen.csproj">
       <Project>{4d1b27dd-ad19-4405-90c0-e03bad50febf}</Project>
       <Name>Zen</Name>
     </ProjectReference>

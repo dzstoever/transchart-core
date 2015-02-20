@@ -48,18 +48,18 @@ namespace NMG.Core
             {
                 case ServerType.SqlServer:
                     return MapFromSqlServerDBType(dataType, dataLength, dataPrecision, dataScale);
-                case ServerType.Oracle:
-                    return MapFromOracleDBType(dataType, dataLength, dataPrecision, dataScale);
-                case ServerType.MySQL:
-                    return MapFromMySqlDBType(dataType, dataLength, dataPrecision, dataScale);
-                case ServerType.PostgreSQL:
-                    return MapFromPostgreDBType(dataType, dataLength, dataPrecision, dataScale);
-                case ServerType.Sybase:
-                    return MapFromSqlServerDBType(dataType, dataLength, dataPrecision, dataScale);
-                case ServerType.Ingres:
-                    return MapFromIngresDbType(dataType, dataLength, dataPrecision, dataScale);
-                case ServerType.CUBRID:
-                    return MapFromCUBRIDDBType(dataType, dataLength, dataPrecision, dataScale);
+                //case ServerType.Oracle:
+                //    return MapFromOracleDBType(dataType, dataLength, dataPrecision, dataScale);
+                //case ServerType.MySQL:
+                //    return MapFromMySqlDBType(dataType, dataLength, dataPrecision, dataScale);
+                //case ServerType.PostgreSQL:
+                //    return MapFromPostgreDBType(dataType, dataLength, dataPrecision, dataScale);
+                //case ServerType.Sybase:
+                //    return MapFromSqlServerDBType(dataType, dataLength, dataPrecision, dataScale);
+                //case ServerType.Ingres:
+                //    return MapFromIngresDbType(dataType, dataLength, dataPrecision, dataScale);
+                //case ServerType.CUBRID:
+                //    return MapFromCUBRIDDBType(dataType, dataLength, dataPrecision, dataScale);
             }
             return MapFromDBType(dataType, dataLength, dataPrecision, dataScale);
         }

@@ -1,5 +1,0 @@
-C:\$\TC-GIT\zen-core\external-src\NMG.Core\bin\x86\Debug\NMG.Core.dll
-C:\$\TC-GIT\zen-core\external-src\NMG.Core\bin\x86\Debug\NMG.Core.pdb
-C:\$\TC-GIT\zen-core\external-src\NMG.Core\obj\x86\Debug\NMG.Core.dll
-C:\$\TC-GIT\zen-core\external-src\NMG.Core\obj\x86\Debug\NMG.Core.pdb
-C:\$\TC-GIT\zen-core\external-src\NMG.Core\obj\x86\Debug\NMG.Core.csprojResolveAssemblyReference.cache

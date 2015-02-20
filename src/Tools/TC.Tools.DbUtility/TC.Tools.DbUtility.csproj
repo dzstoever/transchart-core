@@ -92,6 +92,24 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="Bootstrapper">
+      <HintPath>..\..\packages\Bootstrapper.2.0.3.13\lib\Net40\Bootstrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Bootstrapper.WindsorExtension">
+      <HintPath>..\..\packages\Bootstrapper.Windsor.2.0.3.13\lib\Net40\Bootstrapper.WindsorExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.3.0\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Facilities.FactorySupport">
+      <HintPath>..\..\packages\Castle.FactorySupportFacility.3.3.0\lib\net40\Castle.Facilities.FactorySupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\net40\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator.WindsorAdapter.Unofficial">
+      <HintPath>..\..\packages\CommonServiceLocator.WindsorAdapter.Unofficial.3.3.0.0\lib\Net40\CommonServiceLocator.WindsorAdapter.Unofficial.dll</HintPath>
+    </Reference>
     <Reference Include="FastColoredTextBox, Version=2.16.1.1, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\FCTB.2.16.1.1\lib\FastColoredTextBox.dll</HintPath>
@@ -100,6 +118,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Data.ConnectionUI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=f4ca07f51760da93, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\DataConnectionDialog.1.2\Lib\Microsoft.Data.ConnectionUI.dll</HintPath>
@@ -107,6 +128,9 @@
     <Reference Include="Microsoft.Data.ConnectionUI.Dialog, Version=0.0.0.0, Culture=neutral, PublicKeyToken=f4ca07f51760da93, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\DataConnectionDialog.1.2\Lib\Microsoft.Data.ConnectionUI.Dialog.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -143,33 +167,31 @@
     <Compile Include="ConnectionDialog.Designer.cs">
       <DependentUpon>ConnectionDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\BaseCmd.cs" />
+    <Compile Include="Commands\BuildDataTableCmd.cs" />
+    <Compile Include="Commands\ICmd.cs" />
+    <Compile Include="Controls\RtbAppender.cs" />
     <Compile Include="DataConnectionConfiguration.cs" />
-    <Compile Include="domain\Candidate.cs" />
-    <Compile Include="domain\maps\CandidateMap.cs" />
-    <Compile Include="domain\maps\MedicationsMultiMap.cs" />
-    <Compile Include="domain\maps\NoteMultiMap.cs" />
-    <Compile Include="domain\maps\PatientMap.cs" />
-    <Compile Include="domain\maps\PersonMultiMap.cs" />
-    <Compile Include="domain\maps\PhysicianMultiMap.cs" />
-    <Compile Include="domain\maps\TtCrossMatchMap.cs" />
-    <Compile Include="domain\maps\TtHLAMap.cs" />
-    <Compile Include="domain\maps\TtPRAMap.cs" />
-    <Compile Include="domain\MedicationsMulti.cs" />
-    <Compile Include="domain\NoteMulti.cs" />
-    <Compile Include="domain\Patient.cs" />
-    <Compile Include="domain\Person.cs" />
-    <Compile Include="domain\PersonMulti.cs" />
-    <Compile Include="domain\PhysicianMulti.cs" />
-    <Compile Include="domain\TtCrossMatch.cs" />
-    <Compile Include="domain\TtHLA.cs" />
-    <Compile Include="domain\TtPRA.cs" />
+    <Compile Include="Domain\xCandidate.cs" />
+    <Compile Include="Domain\maps\xCandidateMap.cs" />
+    <Compile Include="Domain\maps\PersonMap.cs" />
+    <Compile Include="Domain\maps\xPatientMap.cs" />
+    <Compile Include="Domain\maps\TtCrossMatchMap.cs" />
+    <Compile Include="Domain\maps\TtHLAMap.cs" />
+    <Compile Include="Domain\maps\TtPRAMap.cs" />
+    <Compile Include="Domain\_NaturalKeys.cs" />
+    <Compile Include="Domain\xPatient.cs" />
+    <Compile Include="Domain\Person.cs" />
+    <Compile Include="Domain\TtCrossMatch.cs" />
+    <Compile Include="Domain\TtHLA.cs" />
+    <Compile Include="Domain\TtPRA.cs" />
     <Compile Include="IDataConnectionConfiguration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UpstateControl.cs">
+    <Compile Include="Controls\UpstateControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UpstateControl.Designer.cs">
+    <Compile Include="Controls\UpstateControl.Designer.cs">
       <DependentUpon>UpstateControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="App.resx">
@@ -189,7 +211,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UpstateControl.resx">
+    <EmbeddedResource Include="Controls\UpstateControl.resx">
       <DependentUpon>UpstateControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">

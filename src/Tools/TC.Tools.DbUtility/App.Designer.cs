@@ -72,12 +72,6 @@ namespace TC.Tools.DbUtility
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.domainCodeFastColoredTextBox = new FastColoredTextBoxNS.FastColoredTextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.lvMappedTables = new System.Windows.Forms.ListView();
-            this.btnReadMappings = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtExportDirectory = new System.Windows.Forms.TextBox();
-            this.btnExportToFile = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -140,10 +134,10 @@ namespace TC.Tools.DbUtility
             this.camelCasedRadioButton = new System.Windows.Forms.RadioButton();
             this.sameAsDBRadioButton = new System.Windows.Forms.RadioButton();
             this.customTabPage = new System.Windows.Forms.TabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.upstateControl1 = new TC.Tools.DbUtility.UpstateControl();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dbTableDetailsGridView)).BeginInit();
             this.mainTabControl.SuspendLayout();
             this.basicSettingsTabPage.SuspendLayout();
@@ -159,7 +153,6 @@ namespace TC.Tools.DbUtility
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.domainCodeFastColoredTextBox)).BeginInit();
             this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.pOracleOnlyOptions.SuspendLayout();
             this.advanceSettingsTabPage.SuspendLayout();
@@ -301,7 +294,7 @@ namespace TC.Tools.DbUtility
             this.folderTextBox.Name = "folderTextBox";
             this.folderTextBox.Size = new System.Drawing.Size(486, 20);
             this.folderTextBox.TabIndex = 7;
-            this.folderTextBox.Text = "c:\\NHibernate Mapping File Generator";
+            this.folderTextBox.Text = "C:\\NHGenerator";
             // 
             // generateButton
             // 
@@ -347,7 +340,7 @@ namespace TC.Tools.DbUtility
             this.nameSpaceTextBox.Name = "nameSpaceTextBox";
             this.nameSpaceTextBox.Size = new System.Drawing.Size(486, 20);
             this.nameSpaceTextBox.TabIndex = 12;
-            this.nameSpaceTextBox.Text = "Sample.CustomerService.Domain";
+            this.nameSpaceTextBox.Text = "TC.Domain";
             // 
             // label3
             // 
@@ -364,16 +357,16 @@ namespace TC.Tools.DbUtility
             this.assemblyNameTextBox.Name = "assemblyNameTextBox";
             this.assemblyNameTextBox.Size = new System.Drawing.Size(486, 20);
             this.assemblyNameTextBox.TabIndex = 14;
-            this.assemblyNameTextBox.Text = "Sample.CustomerService";
+            this.assemblyNameTextBox.Text = "TC";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(3, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(207, 13);
+            this.label5.Size = new System.Drawing.Size(271, 13);
             this.label5.TabIndex = 17;
-            this.label5.Text = "Select the sequence for the selected table";
+            this.label5.Text = "Select the sequence for the selected table (Oracle Only)";
             // 
             // generateAllBtn
             // 
@@ -516,8 +509,21 @@ namespace TC.Tools.DbUtility
             // 
             // mapCodeFastColoredTextBox
             // 
-            this.mapCodeFastColoredTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.mapCodeFastColoredTextBox.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.mapCodeFastColoredTextBox.AutoScrollMinSize = new System.Drawing.Size(2, 14);
             this.mapCodeFastColoredTextBox.BackBrush = null;
+            this.mapCodeFastColoredTextBox.CharHeight = 14;
+            this.mapCodeFastColoredTextBox.CharWidth = 8;
             this.mapCodeFastColoredTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.mapCodeFastColoredTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.mapCodeFastColoredTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -528,6 +534,7 @@ namespace TC.Tools.DbUtility
             this.mapCodeFastColoredTextBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.mapCodeFastColoredTextBox.Size = new System.Drawing.Size(913, 345);
             this.mapCodeFastColoredTextBox.TabIndex = 0;
+            this.mapCodeFastColoredTextBox.Zoom = 100;
             // 
             // tabPage3
             // 
@@ -542,8 +549,21 @@ namespace TC.Tools.DbUtility
             // 
             // domainCodeFastColoredTextBox
             // 
-            this.domainCodeFastColoredTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.domainCodeFastColoredTextBox.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.domainCodeFastColoredTextBox.AutoScrollMinSize = new System.Drawing.Size(2, 14);
             this.domainCodeFastColoredTextBox.BackBrush = null;
+            this.domainCodeFastColoredTextBox.CharHeight = 14;
+            this.domainCodeFastColoredTextBox.CharWidth = 8;
             this.domainCodeFastColoredTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.domainCodeFastColoredTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.domainCodeFastColoredTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -554,10 +574,10 @@ namespace TC.Tools.DbUtility
             this.domainCodeFastColoredTextBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.domainCodeFastColoredTextBox.Size = new System.Drawing.Size(913, 345);
             this.domainCodeFastColoredTextBox.TabIndex = 0;
+            this.domainCodeFastColoredTextBox.Zoom = 100;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.groupBox6);
             this.groupBox5.Controls.Add(this.cancelButton);
             this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.Controls.Add(this.label8);
@@ -582,68 +602,6 @@ namespace TC.Tools.DbUtility
             this.groupBox5.Size = new System.Drawing.Size(1159, 239);
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.lvMappedTables);
-            this.groupBox6.Controls.Add(this.btnReadMappings);
-            this.groupBox6.Controls.Add(this.label10);
-            this.groupBox6.Controls.Add(this.txtExportDirectory);
-            this.groupBox6.Controls.Add(this.btnExportToFile);
-            this.groupBox6.Location = new System.Drawing.Point(741, 15);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(411, 213);
-            this.groupBox6.TabIndex = 23;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Mapped Tables";
-            // 
-            // lvMappedTables
-            // 
-            this.lvMappedTables.CheckBoxes = true;
-            this.lvMappedTables.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lvMappedTables.Location = new System.Drawing.Point(3, 16);
-            this.lvMappedTables.Name = "lvMappedTables";
-            this.lvMappedTables.Size = new System.Drawing.Size(227, 194);
-            this.lvMappedTables.TabIndex = 12;
-            this.lvMappedTables.UseCompatibleStateImageBehavior = false;
-            this.lvMappedTables.View = System.Windows.Forms.View.List;
-            // 
-            // btnReadMappings
-            // 
-            this.btnReadMappings.Location = new System.Drawing.Point(236, 19);
-            this.btnReadMappings.Name = "btnReadMappings";
-            this.btnReadMappings.Size = new System.Drawing.Size(169, 31);
-            this.btnReadMappings.TabIndex = 11;
-            this.btnReadMappings.Text = "<- Read Mappings";
-            this.btnReadMappings.UseVisualStyleBackColor = true;
-            this.btnReadMappings.Click += new System.EventHandler(this.btnReadMappings_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(236, 131);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 13);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Directory";
-            // 
-            // txtExportDirectory
-            // 
-            this.txtExportDirectory.Location = new System.Drawing.Point(236, 150);
-            this.txtExportDirectory.Name = "txtExportDirectory";
-            this.txtExportDirectory.Size = new System.Drawing.Size(169, 20);
-            this.txtExportDirectory.TabIndex = 9;
-            this.txtExportDirectory.Text = "X:\\temp";
-            // 
-            // btnExportToFile
-            // 
-            this.btnExportToFile.Location = new System.Drawing.Point(236, 176);
-            this.btnExportToFile.Name = "btnExportToFile";
-            this.btnExportToFile.Size = new System.Drawing.Size(169, 31);
-            this.btnExportToFile.TabIndex = 8;
-            this.btnExportToFile.Text = "Export Selected ->";
-            this.btnExportToFile.UseVisualStyleBackColor = true;
-            this.btnExportToFile.Click += new System.EventHandler(this.btnExportToFile_Click);
             // 
             // cancelButton
             // 
@@ -695,7 +653,7 @@ namespace TC.Tools.DbUtility
             this.domainFolderTextBox.Name = "domainFolderTextBox";
             this.domainFolderTextBox.Size = new System.Drawing.Size(486, 20);
             this.domainFolderTextBox.TabIndex = 7;
-            this.domainFolderTextBox.Text = "c:\\NHibernate Mapping File Generator";
+            this.domainFolderTextBox.Text = "C:\\NHGenerator";
             // 
             // domainFolderSelectButton
             // 
@@ -722,7 +680,7 @@ namespace TC.Tools.DbUtility
             this.namespaceMapTextBox.Name = "namespaceMapTextBox";
             this.namespaceMapTextBox.Size = new System.Drawing.Size(486, 20);
             this.namespaceMapTextBox.TabIndex = 12;
-            this.namespaceMapTextBox.Text = "Sample.CustomerService.Maps";
+            this.namespaceMapTextBox.Text = "TC.Maps";
             // 
             // groupBox4
             // 
@@ -1299,17 +1257,32 @@ namespace TC.Tools.DbUtility
             this.customTabPage.Text = "Upstate";
             this.customTabPage.UseVisualStyleBackColor = true;
             // 
+            // upstateControl1
+            // 
+            this.upstateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.upstateControl1.Location = new System.Drawing.Point(0, 0);
+            this.upstateControl1.Name = "upstateControl1";
+            this.upstateControl1.Padding = new System.Windows.Forms.Padding(5);
+            this.upstateControl1.Size = new System.Drawing.Size(1165, 691);
+            this.upstateControl1.TabIndex = 0;
+            this.upstateControl1.Load += new System.EventHandler(this.upstateControl1_Load);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel,
-            this.toolStripProgressBar1});
+            this.toolStripProgressBar1,
+            this.toolStripStatusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 720);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1173, 22);
             this.statusStrip1.TabIndex = 23;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(300, 16);
             // 
             // toolStripStatusLabel
             // 
@@ -1323,21 +1296,6 @@ namespace TC.Tools.DbUtility
             this.toolStripStatusLabel.Spring = true;
             this.toolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // toolStripProgressBar1
-            // 
-            this.toolStripProgressBar1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(300, 16);
-            // 
-            // upstateControl1
-            // 
-            this.upstateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.upstateControl1.Location = new System.Drawing.Point(0, 0);
-            this.upstateControl1.Name = "upstateControl1";
-            this.upstateControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.upstateControl1.Size = new System.Drawing.Size(1165, 691);
-            this.upstateControl1.TabIndex = 0;
-            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1347,9 +1305,7 @@ namespace TC.Tools.DbUtility
             this.Controls.Add(this.mainTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "App";
-            this.Text = "Mapping Generator";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.App_Load);
+            this.Text = "Database Utility and Mapping Generator";
             ((System.ComponentModel.ISupportInitialize)(this.dbTableDetailsGridView)).EndInit();
             this.mainTabControl.ResumeLayout(false);
             this.basicSettingsTabPage.ResumeLayout(false);
@@ -1367,8 +1323,6 @@ namespace TC.Tools.DbUtility
             ((System.ComponentModel.ISupportInitialize)(this.domainCodeFastColoredTextBox)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.pOracleOnlyOptions.ResumeLayout(false);
@@ -1504,12 +1458,6 @@ namespace TC.Tools.DbUtility
         private CheckBox EnableInflectionsCheckBox;
         private CheckBox nameAsForeignTableCheckBox;
         private RadioButton entityFrameworkRadionBtn;
-        private GroupBox groupBox6;
-        private Label label10;
-        private TextBox txtExportDirectory;
-        private Button btnExportToFile;
-        private Button btnReadMappings;
-        private ListView lvMappedTables;
         private TabPage customTabPage;
         private TC.Tools.DbUtility.UpstateControl upstateControl1;
     }

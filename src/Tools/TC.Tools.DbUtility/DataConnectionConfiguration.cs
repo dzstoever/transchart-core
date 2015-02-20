@@ -59,12 +59,12 @@ namespace TC.Tools.DbUtility
 
 		    switch (serverType)
 		    {
-		        case ServerType.Oracle:
-                    dialog.DataSources.Add(DataSource.OracleDataSource);
-                    dialog.UnspecifiedDataSource.Providers.Add(DataProvider.OracleDataProvider);
-                    this.dataSources.Add(DataSource.OracleDataSource.Name, DataSource.OracleDataSource);
-                    this.dataProviders.Add(DataProvider.OracleDataProvider.Name, DataProvider.OracleDataProvider);
-		            break;
+                //case ServerType.Oracle:
+                //    dialog.DataSources.Add(DataSource.OracleDataSource);
+                //    dialog.UnspecifiedDataSource.Providers.Add(DataProvider.OracleDataProvider);
+                //    this.dataSources.Add(DataSource.OracleDataSource.Name, DataSource.OracleDataSource);
+                //    this.dataProviders.Add(DataProvider.OracleDataProvider.Name, DataProvider.OracleDataProvider);
+                //    break;
 		        case ServerType.SqlServer:
                     dialog.DataSources.Add(DataSource.SqlDataSource);
                     this.dataSources.Add(DataSource.SqlDataSource.Name, DataSource.SqlDataSource);

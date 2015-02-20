@@ -44,13 +44,10 @@ Temporary Items
 
 # Subversion
 .svn
-.svn/*
 
 # Visual Studio
-*/bin/
-*/obj/
-bin/
-obj/
+bin
+obj
 *.suo
 *.user
 

@@ -29,12 +29,17 @@ namespace TC.Tools.DbUtility
 {
     public partial class App : Form
     {
+        private static ApplicationSettings _appSettings;
+        public static ApplicationSettings AppSettings { get { return _appSettings; } }
+
+
         private IMetadataReader metadataReader;
         private readonly BackgroundWorker worker;
         private IList<Column> gridData;
         private ApplicationSettings applicationSettings;
         private IList<Table> _tables;
         private Connection _currentConnection;
+
 
         public App()
         {
@@ -117,8 +122,8 @@ namespace TC.Tools.DbUtility
 
             pOracleOnlyOptions.Hide();
 
-            if (_currentConnection.Type == ServerType.Oracle)
-                pOracleOnlyOptions.Show();
+            //if (_currentConnection.Type == ServerType.Oracle)
+            //    pOracleOnlyOptions.Show();
         }
 
 
@@ -155,6 +160,7 @@ namespace TC.Tools.DbUtility
         private void LoadApplicationSettings()
         {
             applicationSettings = ApplicationSettings.Load();
+            _appSettings = applicationSettings;
             if (applicationSettings != null)
             {
                 // Display all previous connections
@@ -541,8 +547,12 @@ namespace TC.Tools.DbUtility
 
                 //dzs
                 upstateControl1.DbCnnString = _currentConnection.ConnectionString;
-                upstateControl1.DbTablesDataSource = _tables;
-
+                if(tablesListBox != null)
+                { 
+                var upstateTables = new Table[_tables.Count];
+                _tables.CopyTo(upstateTables, 0);
+                upstateControl1.DbTablesDataSource = upstateTables.ToList();
+                }
 
                 var sequences = metadataReader.GetSequences(ownersComboBox.SelectedItem.ToString());
                 sequencesComboBox.Enabled = false;
@@ -904,272 +914,11 @@ namespace TC.Tools.DbUtility
             nameAsForeignTableCheckBox.Enabled = includeForeignKeysCheckBox.Checked;
         }
 
-
-
-
-
-
-
-        private void App_Load(object sender, EventArgs e)
+        private void upstateControl1_Load(object sender, EventArgs e)
         {
-            //mainTabControl.SelectedIndex = 2;
+            upstateControl1.BindAppSettings();
         }
 
-
-        private string _cnnString = @"Data Source=DSTOEVERPC;Initial Catalog=TCTest5200;Integrated Security=True;Pooling=False";
-        private Configuration _cfg;
-        private ISessionFactoryImplementor _sessionFactoryImpl;
-        private ISessionFactory _sessionFactory;
-
-        private void btnReadMappings_Click(object sender, EventArgs e)
-        {
-            //Console.WriteLine("Configuring...");
-            _cfg = new Configuration();
-            _cfg.DataBaseIntegration(c =>
-            {
-                //Todo: read the connection string in
-                c.ConnectionString = _cnnString;
-                c.Dialect<NHibernate.Dialect.MsSql2008Dialect>();
-                c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
-                c.LogSqlInConsole = true;
-                c.LogFormattedSql = true;
-
-                // !!!
-                // be very careful with this or you could wipe out an entire database!!!
-                // !!!
-                //c.SchemaAction = SchemaAutoAction.Validate;// .Drop, .Update, .Export, .All                                                
-            });
-
-            //get all the mappings from this assembly
-            var mapper = new ModelMapper();
-            var mappings = from t in typeof(IDataConnectionConfiguration).Assembly.GetTypes()
-                           where t.GetInterfaces().Contains(typeof(IDbMap))
-                           select t;
-            
-            //MessageBox.Show(string.Format("{0} mappings in domain model.", mappings.Count()));
-            
-            mapper.AddMappings(mappings);
-            HbmMapping domainMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
-            _cfg.AddMapping(domainMapping);
-
-            /**** 
-            //add all the mappings embedded in this assembly
-            Cfg.AddAssembly(typeof(SqlEntityBulkCopy).Assembly);
-            *****/ 
-            
-            _sessionFactory = _cfg.BuildSessionFactory();
-            _sessionFactoryImpl = (ISessionFactoryImplementor)_sessionFactory;
-
-            foreach (var map in mappings)//we need reflection for this
-            {
-                var Ts = map.BaseType.GetGenericArguments();
-                var entityType = Ts[0]; 
-                //_session = _sessionFactoryImpl.OpenSession();
-                //var metaData = _sessionFactoryImpl.GetClassMetadata(entityType);
-                var persistentClass = _cfg.GetClassMapping(entityType);
-                var tag = entityType; // new Tuple<IClassMetadata, PersistentClass>(metaData, persistentClass);
-                var listItem = new ListViewItem() { Text = persistentClass.Table.Name, Tag = tag };
-                lvMappedTables.Items.Add(listItem);
-
-
-            }
-
-        }
-
-        private void btnExportToFile_Click(object sender, EventArgs e)
-        {
-            foreach (var ckItem in lvMappedTables.CheckedItems)
-            {
-                var lvItem = ckItem as ListViewItem;
-                var entityType = lvItem.Tag as Type;
-
-                DataTable dt = BuildDataTable(entityType); //entityBulkCopy.DataTable;
-                // NOW FILL THE TABLE...
-                var dao = new NHibernateDao(_sessionFactory);
-                using (dao.StartUnitOfWork())
-                {
-                    var count = dao.GetCount<TC.Doman.MedicationsMulti>();
-                    MessageBox.Show(count.ToString());
-                    var entities = dao.FetchAll<TC.Doman.MedicationsMulti>();
-                    foreach (var entity in entities)
-                        AddRow(dt, entity, entityType);                    
-                    //MessageBox.Show(dt.Rows.Count.ToString());
-                    
-                    var headers = BuildHeaderRowFromTable(dt);
-                    int colCount = headers.Length;
-                    
-                    var FORMATTEDROWS = new ArrayList { headers };
-                    foreach (DataRow row in dt.Rows) //insert data in list as an array of strings
-                    {
-                        var fitems = new string[colCount];
-                        //Copy each column as a string
-                        for (var k = 0; k < colCount; k++)
-                        {
-                            var item = row.ItemArray[k];
-                            var type = item.GetType();
-                            // take action based on the object type
-                            if ((type.ToString() == "System.DBNull")) 
-                                fitems[k] = "";
-                            else if ((type.ToString() == "System.DateTime"))
-                            {
-                                var datetime = (DateTime) item;
-                                fitems[k] = datetime.ToString(DateTimeFormat); //ExcelWrapper.
-                            }
-                            else if (type.ToString() == "System.Decimal" || type.ToString() == "System.Single" ||
-                                     type.ToString() == "System.Double")
-                            {
-                                var dval = Convert.ToDecimal(item);
-                                fitems[k] = dval.ToString(FloatFormat); //ExcelWrapper.
-                            }
-                            else if (type.ToString() == "System.Int16" || type.ToString() == "System.Int32" ||
-                                     type.ToString() == "System.Int64")
-                            {
-                                var ival = Convert.ToInt64(item);
-                                fitems[k] = ival.ToString(IntFormat); //ExcelWrapper.
-                            }
-                            else if (type.ToString() == "System.String")
-                            {
-                                const char pipe = '|';
-                                //const char tab = (char)9;
-                                const char CR = (char)13; 
-                                const char LF = (char)10; 
-
-                                var sval = item.ToString();
-                                //if (sval.Length > 255)
-                                //    sval = "[TEXT HAS BEEN TRUNCATED!] " + sval.Substring(0, 255);
-                                sval = sval.Replace(pipe.ToString(), "/v"); //Replace embedded tabs with '/v'
-                                sval = sval.Replace(CR.ToString(), @"/r"); //Replace CR with '/r'
-                                sval = sval.Replace(LF.ToString(), @"/n"); //Replace CR with '/n'
-                                fitems[k] = sval;
-                            }
-                            else fitems[k] = item.ToString(); // anything else...                        
-                        }
-                        FORMATTEDROWS.Add(fitems);
-                    }
-
-                    string s = BuildPipeDelimitedTable(FORMATTEDROWS);
-
-                    var path = Path.Combine(@"X:\test\", dt.TableName+".txt");
-                    File.WriteAllText(path, s);
-
-                }
-            }
-        }
-
-        
-        private static string DateTimeFormat = "yyyy-MM-dd hh:mm:ss";
-        private static string FloatFormat = "F2";
-        private static string IntFormat = "D";//Ex. D8 would be 00001234
-
-        private DataTable BuildDataTable(Type entityType)
-        {
-            DataTable dt = new DataTable();
-            var metaData = _sessionFactoryImpl.GetClassMetadata(entityType);
-            var persistentClass = _cfg.GetClassMapping(entityType);
-            dt = new DataTable(persistentClass.Table.Name);
-
-            //var fu = metaData.GetPropertyType("MRN");
-
-            //if(metaData.IdentifierType.IsComponentType)
-            //{
-                //foreach (var p in persistentClass.IdentifierMapper.PropertyIterator)
-                //{
-                //    var t = p.Type;
-                //}
-
-                foreach (var column in persistentClass.IdentityTable.ColumnIterator)
-                {
-                    var colName = column.Name;
-                    var nhThype = metaData.GetPropertyType("MRN");
-                    var netType = nhThype.ReturnedClass;
-                    dt.Columns.Add(new DataColumn(colName, netType));
-                }
-
-            //}
-            //foreach (var propName in metaData.PropertyNames)
-            //{
-            //    var nhType = metaData.GetPropertyType(propName);
-            //    if (!nhType.IsAssociationType && !nhType.IsCollectionType)
-            //        dt.Columns.Add(new DataColumn(propName, nhType.ReturnedClass));
-            //}
-
-            return dt;
-        }
-
-        public string GetSqlColumnName(string propertyName, PersistentClass persistentClass)
-        {
-            //foreach (var dbCol in from prop in persistentClass.PropertyIterator
-            //                         where prop.Name == propertyName
-            //                         from Column dbCol in prop.ColumnIterator
-            //                         select dbCol)
-            //{
-            //    return dbCol.Name;
-            //}
-            return "IamColumn";
-            //throw new Exception("Property not found! (" + propertyName + ")");
-        }
-
-        private void AddRow(DataTable table, object entity, Type entityType)
-        {
-            var persistentClass = _cfg.GetClassMapping(entityType);
-
-            var row = table.NewRow();
-            var props = entityType.GetProperties();
-            foreach (var prop in props)
-            {
-                var sqlColName = GetSqlColumnName(prop.Name, persistentClass);
-
-                if (!table.Columns.Contains(sqlColName)) continue;
-                var val = prop.GetValue(entity, null);
-                row[prop.Name] = val ?? DBNull.Value;
-                //else { Debug.WriteLine("Excluded value = " + colName); }
-            }
-            table.Rows.Add(row);
-        }
-
-        private string[] BuildHeaderRowFromTable(DataTable datatable)
-        {
-            var headers = new string[datatable.Columns.Count];
-            var i = 0;
-            foreach (DataColumn column in datatable.Columns)
-            {
-                headers[i] = column.ColumnName;
-                i++;
-            }
-            return headers;
-        }
-
-        private string BuildPipeDelimitedRow(IEnumerable<string> values)
-        {
-            const char pipe = '|';
-            var sb = new StringBuilder();
-            foreach (var value in values) sb.Append(value + pipe);
-
-            return sb.ToString();
-        }
-        
-        private string BuildPipeDelimitedTable(ArrayList list)
-        {
-            var sb = new StringBuilder();
-            foreach (var row in list) sb.AppendLine(BuildPipeDelimitedRow((string[])row));
-            return sb.ToString();
-        }
-
-
-        protected string CustomTabPageName 
-        {
-            set { mainTabControl.TabPages[2].Text = value; }
-        }
-
-        protected IList<Table> DbTables { get { return _tables; } }
-        protected TabPage CustomTabPage {
-            get { return mainTabControl.TabPages[2]; }
-            set
-            {
-                mainTabControl.TabPages[2] = value;
-                //mainTabControl.SelectedIndex = 2;
-            }
-        }
 
         
     }

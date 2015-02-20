@@ -1,17 +1,10 @@
-using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
+using NHibernate.Mapping.ByCode.Conformist;
 using TC.Doman;
-using Iesi.Collections.Generic;
 using Zen.Data;
 
-
-namespace TC.Maps {
-
-
+namespace TC.Maps 
+{
     public class TtPRAMap : ClassMapping<TtPRA>, IDbMap
     {
         
@@ -19,18 +12,20 @@ namespace TC.Maps {
             Table("TT_PRA");
 			Schema("dbo");
 			Lazy(true);
-			Property(x => x.WG_Name, map => map.Column("WGName"));
-			Property(x => x.MRN, map => map.NotNullable(true));
-			Property(x => x.PRA_Date, map => map.Column("PRADate"));
-			Property(x => x.Method, map => map.NotNullable(true));
+
+            ComponentAsId(x => x.Id, compId =>
+            {
+                compId.Property(c => c.MRN);
+                compId.Property(c => c.Method);
+                compId.Property(c => c.SerumId);
+                compId.Property(c => c.SerumDate);
+            });
+
+			Property(x => x.WGName);//, map => map.Column("WGName"));
+			Property(x => x.PRADate);//, map => map.Column("PRADate"));
 			Property(x => x.Result);
-			Property(x => x.Specificity);
-			Property(x => x.Entered_By, map => map.Column("EnteredBy"));
-			Property(x => x.Entered_Date, map => map.Column("EnteredDate"));
-			Property(x => x.Lab_Tech, map => map.Column("LabTech"));
-			Property(x => x.Serum_Id, map => { map.Column("SerumId"); map.NotNullable(true); });
-			Property(x => x.Serum_Date, map => { map.Column("SerumDate"); map.NotNullable(true); });
-			Property(x => x.Entered_Time, map => map.Column("EnteredTime"));
+			Property(x => x.Specificity);			
+			Property(x => x.LabTech);//, map => map.Column("LabTech"));			
 			Property(x => x.A);
 			Property(x => x.B);
 			Property(x => x.BW4);
@@ -41,8 +36,21 @@ namespace TC.Maps {
 			Property(x => x.DR515253);
 			Property(x => x.DP);
 			Property(x => x.Comment);
-			Property(x => x.UNOS_Certification_Complete, map => map.Column("UNOSCertificationComplete"));
-			//Property(x => x.Tenant_ID, map => { map.Column("TenantID"); map.NotNullable(true); });
+			//Property(x => x.UNOSCertificationComplete);//, map => map.Column("UNOSCertificationComplete"));
+
+            //Property(x => x.Entered_By, map => map.Column("EnteredBy"));
+            //Property(x => x.Entered_Date, map => map.Column("EnteredDate"));
+            //Property(x => x.Entered_Time, map => map.Column("EnteredTime"));
+            //Property(x => x.Tenant_ID, map => { map.Column("TenantID"); map.NotNullable(true); });
+
+            //try to get a person but ignore, if not found
+            ManyToOne(x => x.Person, m =>
+            {
+                m.Lazy(LazyRelation.NoLazy);
+                m.Columns(fk1 => fk1.Name("MRN"));
+                m.Cascade(Cascade.None);
+                m.NotFound(NotFoundMode.Ignore);
+            });
         }
     }
 }

@@ -73,7 +73,7 @@
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NHibernate.4.0.2.4000\lib\net40\NHibernate.dll</HintPath>
+      <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -85,6 +85,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="5163\TtCrossMatch.cs" />
+    <Compile Include="5163\TtHLA.cs" />
+    <Compile Include="5163\TtPRA.cs" />
     <Compile Include="{ Aemc }\AemcBiopsiesMap.cs" />
     <Compile Include="{ Aemc }\AemcResectionsMap.cs" />
     <Compile Include="PersonMap.cs" />
@@ -117,17 +120,21 @@
       <Project>{467a8ead-c910-45da-9bff-882accf39eaa}</Project>
       <Name>TC</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zen.Data\Zen.Data.csproj">
+    <ProjectReference Include="..\..\..\zen-core\src\Zen.Data\Zen.Data.csproj">
       <Project>{6654d1eb-d5cd-4618-a326-1808894f8d27}</Project>
       <Name>Zen.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zen\Zen.csproj">
+    <ProjectReference Include="..\..\..\zen-core\src\Zen\Zen.csproj">
       <Project>{4d1b27dd-ad19-4405-90c0-e03bad50febf}</Project>
       <Name>Zen</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="5166\" />
+    <Folder Include="5200\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using NMG.Core;
@@ -10,14 +13,57 @@ namespace TC.Tools.DbUtility
 {
     public class ApplicationSettings
     {
+        /// <remarks>
+        /// converts collection of strings to comma-seperated list of string
+        /// </remarks>
+        public static string ListToString(IList list)
+        {
+            if (list.Count > 0)
+            {
+                var sb = new StringBuilder((string)list[0]);
+                list.RemoveAt(0);
+                foreach (string val in list)
+                    sb.Append("," + val);
+                return sb.ToString();
+            }
+            return "";
+        }
+
+        /// <remarks>
+        /// listvals must be comma-seperated list of strings
+        /// </remarks>
+        public static IList StringToList(string listvals)
+        {
+            var list = new List<string>();
+            if (!string.IsNullOrEmpty(listvals))
+            {
+                var vals = listvals.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                list.AddRange(vals.Select(val => val.Trim()));
+            }
+            return list;
+        }
+
+
+
         public ApplicationSettings()
         {
+            DbTableSets = new List<DbTableSet>();
             Connections = new List<Connection>();
         }
 
+        public string SqlDialect { get; set; }
+        public string BatchSize { get; set; }
+        public string SaveLocation { get; set; }
+        
+
+        public List<DbTableSet> DbTableSets { get; set; }
+        public Guid? LastUsedDbTableSet { get; set; }
+        
+
         public List<Connection> Connections { get; set; }
         public Guid? LastUsedConnection { get; set; }
-            
+
+
         public string NameSpace { get; set; }
 
         public string NameSpaceMap { get; set; }
@@ -111,5 +157,16 @@ namespace TC.Tools.DbUtility
         public string ConnectionString { get; set; }
         public string Name { get; set; }
         public ServerType Type { get; set; }
+    }
+
+    public class DbTableSet
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string TableNamesCsv { get; set; }
+        public string Delimiter { get; set; }
+        public string DateTimeFormat { get; set; }
+        public string FloatFormat { get; set; }
+        public string IntFormat { get; set; }              
     }
 }
