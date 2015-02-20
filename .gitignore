@@ -53,3 +53,5 @@ obj
 
 # ReSharper
 _ReSharper.*
+
+TC.Database
