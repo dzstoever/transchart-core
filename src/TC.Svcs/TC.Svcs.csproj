@@ -109,15 +109,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\zen-core\src\Zen.Svcs\Zen.Svcs.csproj">
+      <Project>{c171f5fc-10c4-4f1c-b937-148d35105c65}</Project>
+      <Name>Zen.Svcs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TC\TC.csproj">
       <Project>{467a8ead-c910-45da-9bff-882accf39eaa}</Project>
       <Name>TC</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zen.Svcs\Zen.Svcs.csproj">
-      <Project>{c171f5fc-10c4-4f1c-b937-148d35105c65}</Project>
-      <Name>Zen.Svcs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Zen\Zen.csproj">
+    <ProjectReference Include="..\..\..\zen-core\src\Zen\Zen.csproj">
       <Project>{4d1b27dd-ad19-4405-90c0-e03bad50febf}</Project>
       <Name>Zen</Name>
     </ProjectReference>

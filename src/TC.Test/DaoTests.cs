@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using HibernatingRhinos.Profiler.Appender.NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
+using NHibernate.Dialect;
 using NHibernate.Mapping.ByCode;
+using Zen;
 using Zen.Core;
 using Zen.Data;
-using TC.Domain;
-using TC.Maps;
-
 
 namespace TC.Tests
 {
@@ -33,7 +28,7 @@ namespace TC.Tests
             {
                 c.ConnectionString = @"Data Source=DSTOEVERPC;Initial Catalog=TCTest5201;Integrated Security=True;Pooling=False";
                 //c.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=Transchart52;Integrated Security=True;Pooling=False";
-                c.Dialect<NHibernate.Dialect.MsSql2008Dialect>();
+                c.Dialect<MsSql2008Dialect>();
                 c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
                 c.LogSqlInConsole = true;
                 c.LogFormattedSql = true;
@@ -58,14 +53,14 @@ namespace TC.Tests
             #region NHProf
 
             // only initialize if the dll exists
-            var exists = new Zen.ImplChecker().CheckForDll("HibernatingRhinos.Profiler.Appender.dll");
-            if (!exists) return;
+            //var exists = new ImplChecker().CheckForDll("HibernatingRhinos.Profiler.Appender.dll");
+            //if (!exists) return;
 
-            // set offline to true if you want a file instead of live sql
-            bool offline = false;
-            var offlineFileName = "DaoTests.nhprof";
-            if (offline) NHibernateProfiler.InitializeOfflineProfiling(offlineFileName);
-            else NHibernateProfiler.Initialize();
+            //// set offline to true if you want a file instead of live sql
+            //bool offline = false;
+            //var offlineFileName = "DaoTests.nhprof";
+            //if (offline) NHibernateProfiler.InitializeOfflineProfiling(offlineFileName);
+            //else NHibernateProfiler.Initialize();
 
             #endregion
 
@@ -80,7 +75,7 @@ namespace TC.Tests
             if (Dao == null) return;
             Dao.CloseUnitOfWork();
             Dao.Dispose();
-            NHibernateProfiler.Stop();
+            //NHibernateProfiler.Stop();
         }
 
         

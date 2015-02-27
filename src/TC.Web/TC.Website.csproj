@@ -337,7 +337,7 @@
       <Project>{467a8ead-c910-45da-9bff-882accf39eaa}</Project>
       <Name>TC</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zen\Zen.csproj">
+    <ProjectReference Include="..\..\..\zen-core\src\Zen\Zen.csproj">
       <Project>{4D1B27DD-AD19-4405-90C0-E03BAD50FEBF}</Project>
       <Name>Zen</Name>
     </ProjectReference>

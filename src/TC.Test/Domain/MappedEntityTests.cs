@@ -4,26 +4,26 @@ using Zen.Data;
 namespace TC.Tests.Domain
 {
     
-    public class MappedEntity1 : MappedEntity<long> { }
-    public class MappedEntity2 : MappedEntity<long> { }
+    public class MappedEntity1 : NHMappedEntity<long> { }
+    public class MappedEntity2 : NHMappedEntity<long> { }
 
-    public class SqlCnnFactoryWithNothing : SqlClientCnnFactory { }
-    public class SqlCnnFactoryWithAssemblyFQN : SqlClientCnnFactory
-    {
-        protected override string ConnectionString { get { return @"Server=.\SQLExpress; Database=TransChart52; Trusted_Connection=True;"; } } 
-        public override string GetMappingAssemblyFQN() 
-        {
-            return MappedDomainTests.MappingAssemblyFQN;
-        }
-    }
-    public class SqlCnnFactoryWithAssemblyTypeName : SqlClientCnnFactory
-    {
-        protected override string ConnectionString { get { return @"Server=.\SQLExpress; Database=TransChart52; Trusted_Connection=True;"; } } 
-        public override string GetMappingAssemblyTypeName()
-        {
-            return MappedDomainTests.MappingAssemblyTypeName;
-        }
-    }
+    //public class SqlCnnFactoryWithNothing : SqlClientCnnFactory { }
+    //public class SqlCnnFactoryWithAssemblyFQN : SqlClientCnnFactory
+    //{
+    //    protected override string ConnectionString { get { return @"Server=.\SQLExpress; Database=TransChart52; Trusted_Connection=True;"; } } 
+    //    public override string GetMappingAssemblyFQN() 
+    //    {
+    //        return MappedDomainTests.MappingAssemblyFQN;
+    //    }
+    //}
+    //public class SqlCnnFactoryWithAssemblyTypeName : SqlClientCnnFactory
+    //{
+    //    protected override string ConnectionString { get { return @"Server=.\SQLExpress; Database=TransChart52; Trusted_Connection=True;"; } } 
+    //    public override string GetMappingAssemblyTypeName()
+    //    {
+    //        return MappedDomainTests.MappingAssemblyTypeName;
+    //    }
+    //}
 
     
     [TestClass]
@@ -39,7 +39,7 @@ namespace TC.Tests.Domain
         public void MappedEntityConfiguratorWithAssemblyTypeName()
         {
             // must register IDbCnnFactory with Ioc
-            Zen.Ioc.SingletonDI.Register<IDbCnnFactory>(new SqlCnnFactoryWithAssemblyTypeName());
+            //Zen.Ioc.SingletonDI.Register<IDbCnnFactory>(new SqlCnnFactoryWithAssemblyTypeName());
 
             mappedEntity1 = new MappedEntity1();
             mappedEntity2 = new MappedEntity2();

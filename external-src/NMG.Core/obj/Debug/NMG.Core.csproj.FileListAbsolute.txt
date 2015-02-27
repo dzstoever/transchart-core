@@ -1,4 +1,0 @@
-X:\github\transchart-core\external-src\NMG.Core\bin\Debug\NMG.Core.dll
-X:\github\transchart-core\external-src\NMG.Core\bin\Debug\NMG.Core.pdb
-X:\github\transchart-core\external-src\NMG.Core\obj\Debug\NMG.Core.dll
-X:\github\transchart-core\external-src\NMG.Core\obj\Debug\NMG.Core.pdb
