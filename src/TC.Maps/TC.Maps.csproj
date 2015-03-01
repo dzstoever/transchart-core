@@ -81,34 +81,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="5163\TtCrossMatch.cs" />
-    <Compile Include="5163\TtHLA.cs" />
-    <Compile Include="5163\TtPRA.cs" />
-    <Compile Include="{ Aemc }\AemcBiopsiesMap.cs" />
-    <Compile Include="{ Aemc }\AemcResectionsMap.cs" />
-    <Compile Include="PersonMap.cs" />
-    <Compile Include="[ Views ]\CandidateMap.cs" />
-    <Compile Include="[ Views ]\PatientMap.cs" />
-    <Compile Include="[ Views ]\WaitListMap.cs" />
-    <Compile Include="{ Audit }\AuditUserAccessMap.cs" />
-    <Compile Include="{ Config }\ConfigUserTypeMap.cs" />
-    <Compile Include="{ User }\UserMap.cs" />
-    <Compile Include="[ Helpers ]\BaseDbMaps.cs" />
-    <Compile Include="{ Other }\AccountResourceSecurityMap.cs" />
-    <Compile Include="{ Admission }\AdmissionDischargeTherapyMap.cs" />
-    <Compile Include="{ Admission }\AdmissionDischargeCancelledMap.cs" />
-    <Compile Include="{ Admission }\AdmissionDiagnosisMap.cs" />
-    <Compile Include="{ Admission }\AdmissionCancelledMap.cs" />
-    <Compile Include="{ Admission }\AdmissionBedHistoryMap.cs" />
-    <Compile Include="{ Other }\AppointmentMap.cs" />
-    <Compile Include="TenantMap.cs" />
-    <Compile Include="[ Helpers ]\Concrete.cs" />
-    <Compile Include="{ Admission }\AdmissionDischargeToMap.cs" />
-    <Compile Include="{ Admission }\AdmissionFollowUpMap.cs" />
-    <Compile Include="{ Admission }\AdmissionInvProceduresMap.cs" />
-    <Compile Include="{ Admission }\AdmissionReasonsMap.cs" />
-    <Compile Include="{ Admission }\AdmissionTherapyMap.cs" />
-    <Compile Include="{ Admission }\[ AdmissionMap ].cs" />
+    <Compile Include="Entitites\[ TissueTyping ]\TtCrossMatch.cs" />
+    <Compile Include="Entitites\[ TissueTyping ]\TtHLA.cs" />
+    <Compile Include="Entitites\[ TissueTyping ]\TtPRA.cs" />
+    <Compile Include="NativeGuidGeneratorDef.cs" />
+    <Compile Include="Entitites\[ Aemc ]\AemcBiopsiesMap.cs" />
+    <Compile Include="Entitites\[ Aemc ]\AemcResectionsMap.cs" />
+    <Compile Include="Entitites\PersonMap.cs" />
+    <Compile Include="Entitites\{ Views }\CandidateMap.cs" />
+    <Compile Include="Entitites\{ Views }\PatientMap.cs" />
+    <Compile Include="Entitites\{ Views }\WaitListMap.cs" />
+    <Compile Include="Entitites\[ Audit ]\AuditUserAccessMap.cs" />
+    <Compile Include="Entitites\[ Config ]\ConfigUserTypeMap.cs" />
+    <Compile Include="Entitites\[ User ]\UserMap.cs" />
+    <Compile Include="BaseMaps.cs" />
+    <Compile Include="Entitites\[ Account ]\AccountResourceSecurityMap.cs" />
+    <Compile Include="Entitites\[ Admission ]\AdmissionDischargeTherapyMap.cs" />
+    <Compile Include="Entitites\[ Admission ]\AdmissionDischargeCancelledMap.cs" />
+    <Compile Include="Entitites\[ Admission ]\AdmissionDiagnosisMap.cs" />
+    <Compile Include="Entitites\[ Admission ]\AdmissionCancelledMap.cs" />
+    <Compile Include="Entitites\[ Admission ]\AdmissionBedHistoryMap.cs" />
+    <Compile Include="Entitites\AppointmentMap.cs" />
+    <Compile Include="Entitites\TenantMap.cs" />
+    <Compile Include="BinaryTimestamp.cs" />
+    <Compile Include="Entitites\[ Admission ]\AdmissionDischargeToMap.cs" />
+    <Compile Include="Entitites\[ Admission ]\AdmissionFollowUpMap.cs" />
+    <Compile Include="Entitites\[ Admission ]\AdmissionInvProceduresMap.cs" />
+    <Compile Include="Entitites\[ Admission ]\AdmissionReasonsMap.cs" />
+    <Compile Include="Entitites\[ Admission ]\AdmissionTherapyMap.cs" />
+    <Compile Include="Entitites\[ Admission ]\[ AdmissionMap ].cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -122,15 +123,14 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\zen-core\src\Zen\Zen.csproj">
       <Project>{4d1b27dd-ad19-4405-90c0-e03bad50febf}</Project>
-      <Name>Zen</Name>
+      <Name>Zen %28zen\Zen%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="5166\" />
-    <Folder Include="5200\" />
+    <Folder Include="Entitites\[ Episode ]\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

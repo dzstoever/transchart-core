@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using Microsoft.Data.ConnectionUI;
-using NMG.Core.Domain;
+using Zen.Util.Domain;
 
-namespace TC.Tools.DbUtility
+namespace TC.Utility
 {
 	/// <summary>
 	/// Provide a default implementation for the storage of DataConnection Dialog UI configuration.

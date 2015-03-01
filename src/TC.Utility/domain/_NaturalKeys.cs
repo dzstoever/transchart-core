@@ -1,6 +1,6 @@
 using System;
 
-namespace TC.Doman
+namespace TC.Utility.Domain
 {
     [Serializable]
     public abstract class NaturalKeyStringDateTime

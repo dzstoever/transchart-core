@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -14,17 +13,16 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Dialect;
-using NHibernate.Linq.Visitors.ResultOperatorProcessors;
 using NHibernate.Mapping.ByCode;
-using TC.Doman;
-using TC.Tools.DbUtility.Commands;
+using TC.Utility.Domain;
 using Zen;
+using Zen.Cmds;
 using Zen.Data;
 using Zen.Data.QueryModel;
 using Zen.Log;
 using Environment = System.Environment;
 
-namespace TC.Tools.DbUtility
+namespace TC.Utility.Controls
 {
     internal delegate void IntDelegate(int value);
     internal delegate void BoolDelegate(bool value);
@@ -96,7 +94,7 @@ namespace TC.Tools.DbUtility
             @"ORC|RE|||" + Environment.NewLine +
             @"OBR|1||<AccessionNumber>|<ProcedureID>|||<ObservationDate>||||||||^^^|000000^UNKNOWN^ORDERING PROVIDER^|||||||||F|";        
         private readonly string OBX =
-            @"OBX|<SetID>||<ComponentID>|<SubComponentID>|<ObservationValue>||||";
+            @"OBX|<SeTId>||<ComponenTId>|<SubComponenTId>|<ObservationValue>||||";
 
         
         private void buttonClearRtb_Click(object sender, EventArgs e)
@@ -576,7 +574,7 @@ namespace TC.Tools.DbUtility
                 // change all rows into HL7 messages
                 string msh = MSH;
                 var mshId = DateTime.Now.ToString("yyyyMMddhhmmssfffff");
-                int setId = 0;
+                int seTId = 0;
                 msh = msh.Replace("<UniqueMessageID>", mshId);
                 msh = msh.Replace("<MRN>", p.MRN);
                 msh = msh.Replace("<LastName>", p.Last);
@@ -588,117 +586,117 @@ namespace TC.Tools.DbUtility
                 msh = msh.Replace("<AccessionNumber>", entity.SerumID ?? Guid.NewGuid().ToString());
                 msh = msh.Replace("<ProcedureID>", "HLA: " + entity.Method ?? "");
                 msh = msh.Replace("<ObservationDate>", entity.Id.LabDate.ToString("yyyyMMdd"));
-                msh = msh.Replace("<SetID>", setId.ToString());
+                msh = msh.Replace("<SeTId>", seTId.ToString());
                 //...many obx's per row
 
                 #region add obxs
 
                 if (entity.A1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "A1")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "A1")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.A1);
                 if (entity.A2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "A2")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "A2")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.A2);
                 if (entity.B1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "B1")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "B1")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.B1);
                 if (entity.B2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "B2")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "B2")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.B2);
                 if (entity.C1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "C1")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "C1")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.C1);
                 if (entity.C2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "C2")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "C2")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.C2);
                 if (entity.DR1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DR1")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DR1")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DR1);
                 if (entity.DR2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DR2")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DR2")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DR2);
                 if (entity.DP1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DP1")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DP1")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DP1);
                 if (entity.DP2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DP2")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DP2")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DP2);
                 if (entity.DQ1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DQ1")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DQ1")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DQ1);
                 if (entity.DQ2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DQ2")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DQ2")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DQ2);
                 if (entity.BW4 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "BW4")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "BW4")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.BW4);
                 if (entity.BW6 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "BW6")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "BW6")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.BW6);
                 if (entity.DRW51 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DRW51")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DRW51")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DRW51);
                 if (entity.DRW52 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DRW52")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DRW52")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DRW52);
                 if (entity.DRW53 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DRW53")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DRW53")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DRW53);
 
                 #endregion
 
-                setId++;
+                seTId++;
                 sb.Append(msh);
                 sb.Append(Environment.NewLine);
                 sb.Append(HL7Seperator);
@@ -736,7 +734,7 @@ namespace TC.Tools.DbUtility
                 // change all rows into HL7 messages
                 string msh = MSH;
                 var mshId = DateTime.Now.ToString("yyyyMMddhhmmssfffff");
-                int setId = 0;
+                int seTId = 0;
                 msh = msh.Replace("<UniqueMessageID>", mshId);
                 msh = msh.Replace("<MRN>", p.MRN);
                 msh = msh.Replace("<LastName>", p.Last);
@@ -748,77 +746,77 @@ namespace TC.Tools.DbUtility
                 msh = msh.Replace("<AccessionNumber>", entity.Id.SerumId ?? Guid.NewGuid().ToString());
                 msh = msh.Replace("<ProcedureID>", "PRA: " + entity.Id.Method ?? "");
                 msh = msh.Replace("<ObservationDate>", entity.Id.SerumDate.ToString("yyyyMMdd"));
-                msh = msh.Replace("<SetID>", setId.ToString());
+                msh = msh.Replace("<SeTId>", seTId.ToString());
                 //...many obx's per row
 
                 #region add obxs
 
                 if (entity.Result != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "Result")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "Result")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.Result);
                 if (entity.Specificity != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "Result")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "Result")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.Specificity);
                 if (entity.A != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "A")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "A")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.A);
                 if (entity.B != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "B")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "B")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.B);
                 if (entity.BW4 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "BW4")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "BW4")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.BW4);
                 if (entity.BW6 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "BW6")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "BW6")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.BW6);
                 if (entity.DR != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DR")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DR")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DR);
                 if (entity.DQ != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DQ")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DQ")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DQ);
                 if (entity.CW != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "CW")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "CW")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.CW);
 
                 if (entity.DR515253 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DR515253")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DR515253")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DR515253);
                 if (entity.DP != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "DP")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "DP")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DP);
                 //comments
                 if (entity.Comment != null)
@@ -832,9 +830,9 @@ namespace TC.Tools.DbUtility
                         for (int i = 0; i < comments.Length; i++)
                         {
                             msh = msh + Environment.NewLine +
-                                  OBX.Replace("<SetID>", (setId + 1).ToString())
-                                      .Replace("<ComponentID>", "Comment")
-                                      .Replace("<SubComponentID>", i.ToString())
+                                  OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                                      .Replace("<ComponenTId>", "Comment")
+                                      .Replace("<SubComponenTId>", i.ToString())
                                       .Replace("<ObservationValue>", comments[i]);
                         }
 
@@ -843,7 +841,7 @@ namespace TC.Tools.DbUtility
 
                 #endregion
 
-                setId++;
+                seTId++;
                 sb.Append(msh);
                 sb.Append(Environment.NewLine);
                 sb.Append(HL7Seperator);
@@ -881,7 +879,7 @@ namespace TC.Tools.DbUtility
                 // change all rows into HL7 messages
                 string msh = MSH;
                 var mshId = DateTime.Now.ToString("yyyyMMddhhmmssfffff");
-                int setId = 0;
+                int seTId = 0;
                 msh = msh.Replace("<UniqueMessageID>", mshId);
                 msh = msh.Replace("<MRN>", p.MRN);
                 msh = msh.Replace("<LastName>", p.Last);
@@ -893,40 +891,40 @@ namespace TC.Tools.DbUtility
                 msh = msh.Replace("<AccessionNumber>", entity.Id.SerumId ?? Guid.NewGuid().ToString());
                 msh = msh.Replace("<ProcedureID>", "CROSSMATCH: " + entity.Id.Method ?? "");
                 msh = msh.Replace("<ObservationDate>", entity.Id.LabDate.ToString("yyyyMMdd"));
-                msh = msh.Replace("<SetID>", setId.ToString());
+                msh = msh.Replace("<SeTId>", seTId.ToString());
                 //...many obx's per row
 
                 #region add obxs
 
                 if (entity.Result != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "Result")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "Result")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.Result);
                 if (entity.Id.CellType != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "CellType")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "CellType")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.Id.CellType);
                 if (entity.TargetCellSource != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "TargetCellSource")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "TargetCellSource")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.TargetCellSource);
                 if (entity.Titer != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "Titer")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "Titer")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.Titer);
                 if (entity.ChannelShift != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SetID>", (setId + 1).ToString())
-                              .Replace("<ComponentID>", "ChannelShift")
-                              .Replace("<SubComponentID>", "")
+                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                              .Replace("<ComponenTId>", "ChannelShift")
+                              .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.ChannelShift);
 
                 //comments
@@ -941,9 +939,9 @@ namespace TC.Tools.DbUtility
                         for (int i = 0; i < comments.Length; i++)
                         {
                             msh = msh + Environment.NewLine +
-                                  OBX.Replace("<SetID>", (setId + 1).ToString())
-                                      .Replace("<ComponentID>", "Comments")
-                                      .Replace("<SubComponentID>", i.ToString())
+                                  OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                                      .Replace("<ComponenTId>", "Comments")
+                                      .Replace("<SubComponenTId>", i.ToString())
                                       .Replace("<ObservationValue>", comments[i]);
                         }
 
@@ -952,7 +950,7 @@ namespace TC.Tools.DbUtility
 
                 #endregion
 
-                setId++;
+                seTId++;
                 sb.Append(msh);
                 sb.Append(Environment.NewLine);
                 sb.Append(HL7Seperator);

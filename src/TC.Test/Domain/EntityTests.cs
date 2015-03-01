@@ -12,7 +12,7 @@ namespace TC.Tests.Domain
 
 
     [TestClass]
-    public class PersonTests : DaoTests<Person, string>
+    public class PersonTests : BaseEntityTest<Person, string>
     {
         [TestMethod]
         public void PersonCRUD()
@@ -28,7 +28,7 @@ namespace TC.Tests.Domain
 
 
     [TestClass]// persistent entity with a synthetic Id<Guid>
-    public class TenantTests : DaoTests<Tenant, Guid>
+    public class TenantTests : BaseEntityTest<Tenant, Guid>
     {
         [TestMethod]
         public void TenantCRUD()
@@ -43,7 +43,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]// persistent entity with a natural Id only
-    public class AccountResourceSecurityTests : DaoTests<AccountResourceSecurity, AccountResourceSecurityId>
+    public class AccountResourceSecurityTests : BaseEntityTest<AccountResourceSecurity, AccountResourceSecurityId>
     {
         [TestMethod]
         public void AccountResourceSecurityCRUD()
@@ -63,7 +63,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]// a parent with children, has additional tests (ReadEager + ReadLazy)
-    public class AdmissionTests : DaoTests<Admission, AdmissionId>
+    public class AdmissionTests : BaseEntityTest<Admission, AdmissionId>
     {
         [TestMethod]
         public void AdmissionCRUD()
@@ -112,7 +112,7 @@ namespace TC.Tests.Domain
     #region Admission children
 
     [TestClass]// persistent entity with a synthetic & natural Id
-    public class AdmissionBedHistoryTests : DaoTests<AdmissionBedHistory, int>
+    public class AdmissionBedHistoryTests : BaseEntityTest<AdmissionBedHistory, int>
     {
         [TestMethod]
         public void AdmissionBedHistoryCRUD()
@@ -127,7 +127,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AdmissionCancelledTests : DaoTests<AdmissionCancelled, AdmissionCancelledId>
+    public class AdmissionCancelledTests : BaseEntityTest<AdmissionCancelled, AdmissionCancelledId>
     {
         [TestMethod]
         public void AdmissionCancelledCRUD()
@@ -142,7 +142,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AdmissionDiagnosisTests : DaoTests<AdmissionDiagnosis, AdmissionDiagnosisId>
+    public class AdmissionDiagnosisTests : BaseEntityTest<AdmissionDiagnosis, AdmissionDiagnosisId>
     {
         [TestMethod]
         public void AdmissionDiagnosisCRUD()
@@ -157,7 +157,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AdmissionDischargeCancelledTests : DaoTests<AdmissionDischargeCancelled, AdmissionDischargeCancelledId>
+    public class AdmissionDischargeCancelledTests : BaseEntityTest<AdmissionDischargeCancelled, AdmissionDischargeCancelledId>
     {
         [TestMethod]
         public void AdmissionDischargeCancelledCRUD()
@@ -172,7 +172,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AdmissionDischargeTherapyTests : DaoTests<AdmissionDischargeTherapy, AdmissionDischargeTherapyId>
+    public class AdmissionDischargeTherapyTests : BaseEntityTest<AdmissionDischargeTherapy, AdmissionDischargeTherapyId>
     {
         [TestMethod]
         public void AdmissionDischargeTherapyCRUD()
@@ -187,7 +187,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AdmissionDischargeToTests : DaoTests<AdmissionDischargeTo, AdmissionDischargeToId>
+    public class AdmissionDischargeToTests : BaseEntityTest<AdmissionDischargeTo, AdmissionDischargeToId>
     {
         [TestMethod]
         public void AdmissionDischargeToCRUD()
@@ -202,7 +202,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AdmissionFollowUpTests : DaoTests<AdmissionFollowUp, AdmissionFollowUpId>
+    public class AdmissionFollowUpTests : BaseEntityTest<AdmissionFollowUp, AdmissionFollowUpId>
     {
         [TestMethod]
         public void AdmissionFollowUpCRUD()
@@ -217,7 +217,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AdmissionInvProceduresTests : DaoTests<AdmissionInvProcedures, AdmissionInvProceduresId>
+    public class AdmissionInvProceduresTests : BaseEntityTest<AdmissionInvProcedures, AdmissionInvProceduresId>
     {
         [TestMethod]
         public void AdmissionInvProceduresCRUD()
@@ -232,7 +232,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AdmissionReasonsTests : DaoTests<AdmissionReasons, AdmissionReasonsId>
+    public class AdmissionReasonsTests : BaseEntityTest<AdmissionReasons, AdmissionReasonsId>
     {
         [TestMethod]
         public void AdmissionReasonsCRUD()
@@ -247,7 +247,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AdmissionTherapyTests : DaoTests<AdmissionTherapy, AdmissionTherapyId>
+    public class AdmissionTherapyTests : BaseEntityTest<AdmissionTherapy, AdmissionTherapyId>
     {
         [TestMethod]
         public void AdmissionTherapyCRUD()
@@ -264,7 +264,7 @@ namespace TC.Tests.Domain
     #endregion
 
     [TestClass]
-    public class AemcBiopsiesTests : DaoTests<AemcBiopsies, AemcBiopsiesId>
+    public class AemcBiopsiesTests : BaseEntityTest<AemcBiopsies, AemcBiopsiesId>
     {
         [TestMethod]
         public void AemcBiopsiesCRUD()
@@ -279,7 +279,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AemcResectionsTests : DaoTests<AemcResections, AemcResectionsId>
+    public class AemcResectionsTests : BaseEntityTest<AemcResections, AemcResectionsId>
     {
         [TestMethod]
         public void AemcResectionsCRUD()
@@ -295,12 +295,12 @@ namespace TC.Tests.Domain
 
 
     [TestClass]// has some additional tests (PersistNew + PersistChanges)
-    public class AppointmentTests : DaoTests<Appointment, AppointmentId>
+    public class AppointmentTests : BaseEntityTest<Appointment, AppointmenTId>
     {
         [TestMethod]
         public void AppointmentCRUD()
         {
-            var entity = base.Create(NaturalKeyStringDateTimeDateTimeInt32.GenForTest<AppointmentId>());
+            var entity = base.Create(NaturalKeyStringDateTimeDateTimeInt32.GenForTest<AppointmenTId>());
             
             entity.Notes = "make a change";
             base.Update(entity);
@@ -318,8 +318,8 @@ namespace TC.Tests.Domain
         ///       It causes a select statement to be issued prior to the insert...
         ///       The best solution would of course be to NOT have composite id's
         /// WARN:  
-        /// Unable to determine if [Id: TC.Domain.AppointmentId] [Uid:897d84d2-9bac-4596-927c-b05c14b0a20c]
-        /// TC.Domain.Appointment with assigned identifier TC.Domain.AppointmentId is transient or detached; 
+        /// Unable to determine if [Id: TC.Domain.AppointmenTId] [Uid:897d84d2-9bac-4596-927c-b05c14b0a20c]
+        /// TC.Domain.Appointment with assigned identifier TC.Domain.AppointmenTId is transient or detached; 
         /// querying the database. Use explicit Save() or Update() in session to prevent this.
         /// </remarks>
         //[TestMethod]
@@ -327,7 +327,7 @@ namespace TC.Tests.Domain
         {
             base.Persist(new Appointment
             {
-                Id = NaturalKeyStringDateTimeDateTimeInt32.GenForTest<AppointmentId>()
+                Id = NaturalKeyStringDateTimeDateTimeInt32.GenForTest<AppointmenTId>()
             });
 
         }
@@ -343,7 +343,7 @@ namespace TC.Tests.Domain
         public void AppointmentPersistChanges()
         {
             var entity = base.Create(
-                NaturalKeyStringDateTimeDateTimeInt32.GenForTest<AppointmentId>());
+                NaturalKeyStringDateTimeDateTimeInt32.GenForTest<AppointmenTId>());
 
             entity.Notes = "some new data";
             // So NH does not know this is a already a persistent entity and whether 
@@ -356,7 +356,7 @@ namespace TC.Tests.Domain
 
 
     [TestClass]
-    public class ConfigUserTypeTests : DaoTests<ConfigUserType, int>
+    public class ConfigUserTypeTests : BaseEntityTest<ConfigUserType, int>
     {
         [TestMethod]
         public void ConfigUserTypeCRUD()
@@ -392,7 +392,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class UserTests : DaoTests<User, string>
+    public class UserTests : BaseEntityTest<User, string>
     {
         [TestMethod]
         public void UserCRUD()
@@ -413,7 +413,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class AuditUserAccessTests : DaoTests<AuditUserAccess, int>
+    public class AuditUserAccessTests : BaseEntityTest<AuditUserAccess, int>
     {
         [TestMethod]
         public void AuditUserAccessCRUD()
@@ -431,7 +431,7 @@ namespace TC.Tests.Domain
     #region Views(Read-Only)
 
     [TestClass]
-    public class PatientViewTests : DaoTests<Patient, string>
+    public class PatientViewTests : BaseEntityTest<Patient, string>
     {
         [TestMethod]
         public void PatientViewRead()
@@ -441,7 +441,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class CandidateViewTests : DaoTests<Candidate, string>
+    public class CandidateViewTests : BaseEntityTest<Candidate, string>
     {
         [TestMethod]
         public void CandidateViewRead()
@@ -451,7 +451,7 @@ namespace TC.Tests.Domain
     }
 
     [TestClass]
-    public class WaitListViewTests : DaoTests<WaitList, string>
+    public class WaitListViewTests : BaseEntityTest<WaitList, string>
     {
         [TestMethod]
         public void WaitListViewRead()

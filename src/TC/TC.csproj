@@ -80,48 +80,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="{ Models }\BusinessModels\PatientBMOs.cs" />
-    <Compile Include="Domain\[ Components ]\ContactInfo.cs" />
-    <Compile Include="Domain\[ Abstract ]\Demographics.cs" />
-    <Compile Include="Domain\[ Abstract ]\UnosData.cs" />
-    <Compile Include="Domain\{ Episode }\SolidOrganTransplant\TxPerson.cs" />
-    <Compile Include="Domain\[ Abstract ]\Diagnosis.cs" />
-    <Compile Include="Domain\[ Abstract ]\CareTeam.cs" />
-    <Compile Include="Domain\{ Episode }\Episode.cs" />
-    <Compile Include="Domain\{ Episode }\SolidOrganTransplant\SolidOrganTransplant.cs" />
-    <Compile Include="Domain\{ Episode }\SolidOrganTransplant\TxEpisodeDetails.cs" />
-    <Compile Include="Domain\{ Episode }\SolidOrganTransplant\TxEpisode.cs" />
-    <Compile Include="Domain\{ Episode }\SolidOrganTransplant\DonorEpisode.cs" />
-    <Compile Include="Domain\{ Episode }\EpisodeReferral.cs" />
-    <Compile Include="Domain\{ Episode }\HeartDisease\HDEpisode.cs" />
-    <Compile Include="Domain\{ Episode }\SolidOrganTransplant\RecipientEpisode.cs" />
-    <Compile Include="Domain\[ Views ]\Patient.cs" />
-    <Compile Include="Domain\Person.cs" />
-    <Compile Include="Domain\[ Views ]\Candidate.cs" />
-    <Compile Include="Domain\[ Views ]\WaitList.cs" />
-    <Compile Include="Domain\{ Episode }\VentricularAssistDevice\VADEpisode.cs" />
-    <Compile Include="Domain\{ Other }\AccountResourceSecurity.cs" />
-    <Compile Include="Domain\{ Aemc }\AemcResections.cs" />
-    <Compile Include="Domain\{ Admission }\AdmissionDischargeTherapy.cs" />
-    <Compile Include="Domain\{ Admission }\AdmissionDischargeCancelled.cs" />
-    <Compile Include="Domain\{ Admission }\AdmissionCancelled.cs" />
-    <Compile Include="Domain\{ Admission }\AdmissionBedHistory.cs" />
-    <Compile Include="Domain\{ Admission }\AdmissionDiagnosis.cs" />
-    <Compile Include="Domain\{ Other }\Appointment.cs" />
-    <Compile Include="Domain\Tenant.cs" />
-    <Compile Include="Domain\[ Helpers ]\NaturalKeys.cs" />
-    <Compile Include="Domain\[ Helpers ]\BaseEntities.cs" />
-    <Compile Include="Domain\{ Admission }\AdmissionDischargeTo.cs" />
-    <Compile Include="Domain\{ Admission }\AdmissionFollowUp.cs" />
-    <Compile Include="Domain\{ Admission }\AdmissionInvProcedures.cs" />
-    <Compile Include="Domain\{ Admission }\AdmissionReasons.cs" />
-    <Compile Include="Domain\{ Admission }\AdmissionTherapy.cs" />
-    <Compile Include="Domain\{ Aemc }\AemcBiopsies.cs" />
-    <Compile Include="Domain\{ Admission }\Admission.cs" />
-    <Compile Include="Domain\{ User }\User.cs" />
-    <Compile Include="Domain\{ Audit }\AuditUserAccess.cs" />
-    <Compile Include="Domain\{ Config }\ConfigUserType.cs" />
-    <Compile Include="{ Models }\DataModels\PersonDTO.cs">
+    <Compile Include="BusinessModel\PatientBMO.cs" />
+    <Compile Include="Domain\Components\ContactInfo.cs" />
+    <Compile Include="Domain\Components\Demographics.cs" />
+    <Compile Include="Domain\Components\UnosData.cs" />
+    <Compile Include="Domain\Entities\[ Episode ]\SolidOrganTransplant\TxPerson.cs" />
+    <Compile Include="Domain\Components\Diagnosis.cs" />
+    <Compile Include="Domain\Components\CareTeam.cs" />
+    <Compile Include="Domain\Entities\[ Episode ]\Episode.cs" />
+    <Compile Include="Domain\Entities\[ Episode ]\SolidOrganTransplant\SolidOrganTransplant.cs" />
+    <Compile Include="Domain\Entities\[ Episode ]\SolidOrganTransplant\TxEpisodeDetails.cs" />
+    <Compile Include="Domain\Entities\[ Episode ]\SolidOrganTransplant\TxEpisode.cs" />
+    <Compile Include="Domain\Entities\[ Episode ]\SolidOrganTransplant\DonorEpisode.cs" />
+    <Compile Include="Domain\Entities\[ Episode ]\EpisodeReferral.cs" />
+    <Compile Include="Domain\Entities\[ Episode ]\HeartDisease\HDEpisode.cs" />
+    <Compile Include="Domain\Entities\[ Episode ]\SolidOrganTransplant\RecipientEpisode.cs" />
+    <Compile Include="Domain\Entities\{ Views }\Patient.cs" />
+    <Compile Include="Domain\Entities\Person.cs" />
+    <Compile Include="Domain\Entities\{ Views }\Candidate.cs" />
+    <Compile Include="Domain\Entities\{ Views }\WaitList.cs" />
+    <Compile Include="Domain\Entities\[ Episode ]\VentricularAssistDevice\VADEpisode.cs" />
+    <Compile Include="Domain\Entities\[ Other ]\AccountResourceSecurity.cs" />
+    <Compile Include="Domain\Entities\[ Aemc ]\AemcResections.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\AdmissionDischargeTherapy.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\AdmissionDischargeCancelled.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\AdmissionCancelled.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\AdmissionBedHistory.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\AdmissionDiagnosis.cs" />
+    <Compile Include="Domain\Entities\[ Other ]\Appointment.cs" />
+    <Compile Include="Domain\Entities\Tenant.cs" />
+    <Compile Include="Domain\NaturalKeys.cs" />
+    <Compile Include="Domain\BaseEntities.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\AdmissionDischargeTo.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\AdmissionFollowUp.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\AdmissionInvProcedures.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\AdmissionReasons.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\AdmissionTherapy.cs" />
+    <Compile Include="Domain\Entities\[ Aemc ]\AemcBiopsies.cs" />
+    <Compile Include="Domain\Entities\[ Admission ]\Admission.cs" />
+    <Compile Include="Domain\Entities\[ User ]\User.cs" />
+    <Compile Include="Domain\Entities\[ Audit ]\AuditUserAccess.cs" />
+    <Compile Include="Domain\Entities\[ Config ]\ConfigUserType.cs" />
+    <Compile Include="Svcs\DataContracts\PersonDTO.cs">
       <SubType>
       </SubType>
     </Compile>
@@ -129,17 +129,16 @@
     <Compile Include="TransChartEncryption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Svcs\IDataAccess.cs" />
-    <Compile Include="{ Models }\ViewModels\HomeVMs.cs" />
+    <Compile Include="Ux\ViewModels\PatientSearchVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\zen-core\src\Zen\Zen.csproj">
       <Project>{4d1b27dd-ad19-4405-90c0-e03bad50febf}</Project>
-      <Name>Zen</Name>
+      <Name>Zen %28zen\Zen%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Diagrams\BaseEntities.cd" />
     <None Include="Diagrams\Person-TxEpisodes.cd" />
   </ItemGroup>

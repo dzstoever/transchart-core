@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
+using TC.Utility.Controls;
 
-namespace TC.Tools.DbUtility
+namespace TC.Utility
 {
     partial class App
     {
@@ -134,7 +135,7 @@ namespace TC.Tools.DbUtility
             this.camelCasedRadioButton = new System.Windows.Forms.RadioButton();
             this.sameAsDBRadioButton = new System.Windows.Forms.RadioButton();
             this.customTabPage = new System.Windows.Forms.TabPage();
-            this.upstateControl1 = new TC.Tools.DbUtility.UpstateControl();
+            this.upstateControl1 = new UpstateControl();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -1459,7 +1460,7 @@ namespace TC.Tools.DbUtility
         private CheckBox nameAsForeignTableCheckBox;
         private RadioButton entityFrameworkRadionBtn;
         private TabPage customTabPage;
-        private TC.Tools.DbUtility.UpstateControl upstateControl1;
+        private UpstateControl upstateControl1;
     }
 }
 

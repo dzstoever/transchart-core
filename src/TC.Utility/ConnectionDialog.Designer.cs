@@ -1,4 +1,4 @@
-﻿namespace TC.Tools.DbUtility
+﻿namespace TC.Utility
 {
     partial class ConnectionDialog
     {

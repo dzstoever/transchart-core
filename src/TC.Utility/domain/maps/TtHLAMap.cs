@@ -1,9 +1,8 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using TC.Doman;
 using Zen.Data;
 
-namespace TC.Maps 
+namespace TC.Utility.Domain.maps 
 {
     public class TtHLAMap : ClassMapping<TtHLA>, IDbMap
     {        
@@ -53,7 +52,7 @@ namespace TC.Maps
             //Property(x => x.Entered_Date, map => { map.Column("EnteredDate"); map.NotNullable(true); });
             //Property(x => x.Entered_By, map => { map.Column("EnteredBy"); map.NotNullable(true); });
             //Property(x => x.enteredtime);
-            //Property(x => x.Tenant_ID, map => { map.Column("TenantID"); map.NotNullable(true); });
+            //Property(x => x.Tenant_ID, map => { map.Column("TenanTId"); map.NotNullable(true); });
             
             //try to get a person but ignore, if not found
             ManyToOne(x => x.Person, m =>

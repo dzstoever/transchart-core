@@ -7,7 +7,7 @@ using log4net.Appender;
 using log4net.Core;
 using log4net.Util;
 
-namespace TC.Tools.DbUtility
+namespace TC.Utility.Controls
 {
     /// <summary>
     /// Appends logging events to a RichTextBox

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
+using TC.Utility.Controls;
 using Zen.Log;
 
-namespace TC.Tools.DbUtility
+namespace TC.Utility
 {
     internal static class Program
     {

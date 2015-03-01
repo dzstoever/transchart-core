@@ -1,9 +1,8 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using TC.Doman;
 using Zen.Data;
 
-namespace TC.Maps 
+namespace TC.Utility.Domain.maps 
 {        
     public class TtCrossMatchMap : ClassMapping<TtCrossMatch>, IDbMap
     {        
@@ -36,7 +35,7 @@ namespace TC.Maps
             //Property(x => x.Entered_By, map => map.Column("EnteredBy"));
             //Property(x => x.Entered_Date, map => map.Column("EnteredDate"));
             //Property(x => x.Entered_Time, map => map.Column("EnteredTime"));
-            //Property(x => x.Tenant_ID, map => { map.Column("TenantID"); map.NotNullable(true); });
+            //Property(x => x.Tenant_ID, map => { map.Column("TenanTId"); map.NotNullable(true); });
 
             //try to get a person but ignore, if not found
             ManyToOne(x => x.Person, m =>

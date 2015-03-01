@@ -8,8 +8,8 @@
     <ProjectGuid>{63E6330D-8291-44DD-A032-B7FBF844AC5D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TC.Tools</RootNamespace>
-    <AssemblyName>TCTools</AssemblyName>
+    <RootNamespace>TC.Utility</RootNamespace>
+    <AssemblyName>TransChartUtility</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Applications.ico</ApplicationIcon>
     <FileUpgradeFlags>
@@ -31,7 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <StartupObject>TC.Tools.DbUtility.Program</StartupObject>
+    <StartupObject>TC.Utility.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -138,9 +138,6 @@
     <Compile Include="ConnectionDialog.Designer.cs">
       <DependentUpon>ConnectionDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\BaseCmd.cs" />
-    <Compile Include="Commands\BuildDataTableCmd.cs" />
-    <Compile Include="Commands\ICmd.cs" />
     <Compile Include="Controls\RtbAppender.cs" />
     <Compile Include="DataConnectionConfiguration.cs" />
     <Compile Include="Domain\xCandidate.cs" />
@@ -201,17 +198,13 @@
     <None Include="Applications.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\zen-core\src\utility\Zen.Util.Core\Zen.Util.Core.csproj">
-      <Project>{a15f2280-c07b-4bba-b822-6d06c464a582}</Project>
-      <Name>Zen.Util.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\zen-core\src\Zen.Data\Zen.Data.csproj">
       <Project>{6654D1EB-D5CD-4618-A326-1808894F8D27}</Project>
       <Name>Zen.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\zen-core\src\Zen\Zen.csproj">
       <Project>{4D1B27DD-AD19-4405-90C0-E03BAD50FEBF}</Project>
-      <Name>Zen</Name>
+      <Name>Zen %28zen\Zen%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

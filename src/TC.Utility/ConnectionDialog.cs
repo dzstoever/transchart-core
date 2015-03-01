@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using Microsoft.Data.ConnectionUI;
-using NMG.Core.Domain;
-using NMG.Core.Util;
+using Zen.Util;
+using Zen.Util.Domain;
 
-namespace TC.Tools.DbUtility
+namespace TC.Utility
 {
     public partial class ConnectionDialog : Form
     {

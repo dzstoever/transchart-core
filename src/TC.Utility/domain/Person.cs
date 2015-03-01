@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using Zen.Core;
 
-namespace TC.Doman
+namespace TC.Utility.Domain
 {
     public class Person : DomainEntity<string>
     {        

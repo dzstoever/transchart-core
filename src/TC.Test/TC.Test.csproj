@@ -101,7 +101,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DaoTests.cs" />
+    <Compile Include="BaseEntityTest.cs" />
     <Compile Include="Domain\EntityTests.cs" />
     <Compile Include="Domain\MappedEntityTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,7 +121,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\zen-core\src\Zen\Zen.csproj">
       <Project>{4d1b27dd-ad19-4405-90c0-e03bad50febf}</Project>
-      <Name>Zen</Name>
+      <Name>Zen %28zen\Zen%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

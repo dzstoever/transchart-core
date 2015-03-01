@@ -1,31 +1,22 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NHibernate;
-using NHibernate.Cfg;
-using NHibernate.Cfg.MappingSchema;
-using NHibernate.Engine;
-using NHibernate.Mapping;
-using NHibernate.Mapping.ByCode;
-using NMG.Core;
-using NMG.Core.Domain;
-using NMG.Core.Reader;
-using NMG.Core.TextFormatter;
-using Zen.Data;
-using Column = NMG.Core.Domain.Column;
+using Zen.Util;
+using Zen.Util.Domain;
+using Zen.Util.Reader;
+using Zen.Util.TextFormatter;
+using Table = Zen.Util.Domain.Table;
+using Column = Zen.Util.Domain.Column;
 using Environment = System.Environment;
-using Table = NMG.Core.Domain.Table;
 
-namespace TC.Tools.DbUtility
+
+namespace TC.Utility
 {
     public partial class App : Form
     {

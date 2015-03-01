@@ -1,8 +1,8 @@
-using NMG.Core;
-using NMG.Core.Domain;
-using NMG.Core.Generator;
+using Zen.Util;
+using Zen.Util.Domain;
+using Zen.Util.Generator;
 
-namespace TC.Tools.DbUtility
+namespace TC.Utility
 {
     public class ApplicationController
     {

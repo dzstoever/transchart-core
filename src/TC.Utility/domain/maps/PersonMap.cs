@@ -1,9 +1,8 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using TC.Doman;
 using Zen.Data;
 
-namespace TC.Maps 
+namespace TC.Utility.Domain.maps 
 {        
     public class PersonMap : ClassMapping<Person>, IDbMap
     {        

@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
 
-namespace TC.Doman 
+namespace TC.Utility.Domain 
 {
     [Serializable]
     public class TtHLAId : NaturalKeyStringDateTime

@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using NMG.Core;
-using NMG.Core.Domain;
+using Zen.Util;
+using Zen.Util.Domain;
 
-namespace TC.Tools.DbUtility
+namespace TC.Utility
 {
     public class ApplicationSettings
     {

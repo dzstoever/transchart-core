@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 // a place to provide implementations of the existing interfaces
 // and remove dependancies on any COM Interop assemblies
+// ReSharper disable once CheckNamespace
 namespace TransChartEncryption
 {
     public enum TransChartEncryptionType

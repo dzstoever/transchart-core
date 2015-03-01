@@ -32,8 +32,8 @@ namespace TC.Tests.Domain
         internal const string MappingAssemblyFQN = "TC.Maps";// this should fail without Version=..., Culture=..., PublicKeyToken=...
         internal const string MappingAssemblyTypeName = "TC.Maps.AdmissionMapping, TC.Maps";// that's why it's easier to use a type
 
-        MappedEntity1 mappedEntity1;
-        MappedEntity2 mappedEntity2;
+        MappedEntity1 _mappedEntity1;
+        MappedEntity2 _mappedEntity2;
 
         [TestMethod]
         public void MappedEntityConfiguratorWithAssemblyTypeName()
@@ -41,8 +41,8 @@ namespace TC.Tests.Domain
             // must register IDbCnnFactory with Ioc
             //Zen.Ioc.SingletonDI.Register<IDbCnnFactory>(new SqlCnnFactoryWithAssemblyTypeName());
 
-            mappedEntity1 = new MappedEntity1();
-            mappedEntity2 = new MappedEntity2();
+            _mappedEntity1 = new MappedEntity1();
+            _mappedEntity2 = new MappedEntity2();
             
         }
     }
