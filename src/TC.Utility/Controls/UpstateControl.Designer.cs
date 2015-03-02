@@ -159,7 +159,7 @@
             this.uxSqlDialect.Size = new System.Drawing.Size(237, 28);
             this.uxSqlDialect.TabIndex = 14;
             this.uxSqlDialect.Text = "MsSql2005Dialect";
-            this.uxSqlDialect.SelectionChangeCommitted += new System.EventHandler(this.uxSqlDialect_SelectionChangeCommitted);
+            this.uxSqlDialect.SelectionChangeCommitted += new System.EventHandler(this.UxSqlDialectSelectionChangeCommitted);
             // 
             // label13
             // 
@@ -190,7 +190,7 @@
             0,
             0,
             0});
-            this.uxBatchSize.ValueChanged += new System.EventHandler(this.uxBatchSize_ValueChanged);
+            this.uxBatchSize.ValueChanged += new System.EventHandler(this.UxBatchSizeValueChanged);
             // 
             // label14
             // 
@@ -214,7 +214,7 @@
             this.uxSaveLocation.TabIndex = 4;
             this.uxSaveLocation.Tag = "";
             this.uxSaveLocation.Text = "x:\\exported";
-            this.uxSaveLocation.TextChanged += new System.EventHandler(this.uxSaveLocation_TextChanged);
+            this.uxSaveLocation.TextChanged += new System.EventHandler(this.UxSaveLocationTextChanged);
             // 
             // panel1
             // 
@@ -237,7 +237,7 @@
             this.buttonAddTableToSet.TabIndex = 6;
             this.buttonAddTableToSet.Text = "Add To Set >";
             this.buttonAddTableToSet.UseVisualStyleBackColor = true;
-            this.buttonAddTableToSet.Click += new System.EventHandler(this.buttonAddTableToSet_Click);
+            this.buttonAddTableToSet.Click += new System.EventHandler(this.ButtonAddTableToSetClick);
             // 
             // uxCurrentDbCnn
             // 
@@ -422,7 +422,7 @@
             this.buttonExportSetToFlatFiles.TabIndex = 2;
             this.buttonExportSetToFlatFiles.Text = "Export Set to Flat File(s)";
             this.buttonExportSetToFlatFiles.UseVisualStyleBackColor = true;
-            this.buttonExportSetToFlatFiles.Click += new System.EventHandler(this.buttonExportSetToFlatFiles_Click);
+            this.buttonExportSetToFlatFiles.Click += new System.EventHandler(this.ButtonExportSetToFlatFilesClick);
             // 
             // panel2
             // 
@@ -457,7 +457,7 @@
             this.buttonSaveTableSet.TabIndex = 11;
             this.buttonSaveTableSet.Text = "Save Set";
             this.buttonSaveTableSet.UseVisualStyleBackColor = true;
-            this.buttonSaveTableSet.Click += new System.EventHandler(this.buttonSaveTableSet_Click);
+            this.buttonSaveTableSet.Click += new System.EventHandler(this.ButtonSaveTableSetClick);
             // 
             // uxSavedSets
             // 
@@ -474,8 +474,8 @@
             this.uxSavedSets.Size = new System.Drawing.Size(269, 24);
             this.uxSavedSets.TabIndex = 4;
             this.uxSavedSets.Text = "New...";
-            this.uxSavedSets.SelectionChangeCommitted += new System.EventHandler(this.uxSavedSets_SelectionChangeCommitted);
-            this.uxSavedSets.Enter += new System.EventHandler(this.uxSavedSets_Enter);
+            this.uxSavedSets.SelectionChangeCommitted += new System.EventHandler(this.UxSavedSetsSelectionChangeCommitted);
+            this.uxSavedSets.Enter += new System.EventHandler(this.UxSavedSetsEnter);
             // 
             // label4
             // 
@@ -571,7 +571,7 @@
             this.buttonClearRtb.TabIndex = 10;
             this.buttonClearRtb.Text = "Clear";
             this.buttonClearRtb.UseVisualStyleBackColor = true;
-            this.buttonClearRtb.Click += new System.EventHandler(this.buttonClearRtb_Click);
+            this.buttonClearRtb.Click += new System.EventHandler(this.ButtonClearRtbClick);
             // 
             // buttonExportTableToHL7
             // 
@@ -582,7 +582,7 @@
             this.buttonExportTableToHL7.TabIndex = 9;
             this.buttonExportTableToHL7.Text = "Export Table to HL7 File";
             this.buttonExportTableToHL7.UseVisualStyleBackColor = true;
-            this.buttonExportTableToHL7.Click += new System.EventHandler(this.buttonExportTableToHL7_Click);
+            this.buttonExportTableToHL7.Click += new System.EventHandler(this.ButtonExportTableToHL7Click);
             // 
             // uxHL7TableName
             // 

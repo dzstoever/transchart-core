@@ -1,4 +1,5 @@
 ﻿using System;
+using TC.Domain.Entities;
 using Zen.Core;
 
 namespace TC.Domain

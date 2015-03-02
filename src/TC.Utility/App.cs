@@ -905,6 +905,8 @@ namespace TC.Utility
             nameAsForeignTableCheckBox.Enabled = includeForeignKeysCheckBox.Checked;
         }
 
+        
+        
         private void upstateControl1_Load(object sender, EventArgs e)
         {
             upstateControl1.BindAppSettings();

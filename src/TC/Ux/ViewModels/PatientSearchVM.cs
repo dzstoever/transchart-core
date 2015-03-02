@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using TC.BusinessModels;
+using TC.BusinessModel;
 
-namespace TC.ViewModels
+namespace TC.Ux.ViewModels
 {
 
     public class PatientSearchVM

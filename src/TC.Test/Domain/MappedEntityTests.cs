@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Zen.Data;
+﻿using Zen.Data;
 
 namespace TC.Tests.Domain
 {
@@ -26,26 +25,26 @@ namespace TC.Tests.Domain
     //}
 
     
-    [TestClass]
-    public class MappedDomainTests
-    {
-        internal const string MappingAssemblyFQN = "TC.Maps";// this should fail without Version=..., Culture=..., PublicKeyToken=...
-        internal const string MappingAssemblyTypeName = "TC.Maps.AdmissionMapping, TC.Maps";// that's why it's easier to use a type
+    //[TestClass]
+    //public class MappedDomainTests
+    //{
+        //internal const string MappingAssemblyFQN = "TC.Maps";// this should fail without Version=..., Culture=..., PublicKeyToken=...
+        //internal const string MappingAssemblyTypeName = "TC.Maps.AdmissionMapping, TC.Maps";// that's why it's easier to use a type
 
-        MappedEntity1 _mappedEntity1;
-        MappedEntity2 _mappedEntity2;
+        //MappedEntity1 _mappedEntity1;
+        //MappedEntity2 _mappedEntity2;
 
-        [TestMethod]
-        public void MappedEntityConfiguratorWithAssemblyTypeName()
-        {
+        //[TestMethod]
+        //public void MappedEntityConfiguratorWithAssemblyTypeName()
+        //{
             // must register IDbCnnFactory with Ioc
             //Zen.Ioc.SingletonDI.Register<IDbCnnFactory>(new SqlCnnFactoryWithAssemblyTypeName());
 
-            _mappedEntity1 = new MappedEntity1();
-            _mappedEntity2 = new MappedEntity2();
+            //_mappedEntity1 = new MappedEntity1();
+            //_mappedEntity2 = new MappedEntity2();
             
-        }
-    }
+        //}
+    //}
 
     //todo: test to prove we only configure once
     //todo: test expected failures

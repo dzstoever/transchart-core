@@ -1,4 +1,4 @@
-namespace TC.Domain
+namespace TC.Domain.Entities
 {
     public class Episode : MultiEnteredByEntity<int>
     {

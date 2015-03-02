@@ -1,9 +1,6 @@
 using System;
-using System.Text;
-using System.Collections.Generic;
 
-
-namespace TC.Domain 
+namespace TC.Domain.Entities 
 {
     //DbView
     public class WaitList : EnteredByEntity<string> 

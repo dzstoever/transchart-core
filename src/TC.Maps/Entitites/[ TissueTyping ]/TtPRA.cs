@@ -1,6 +1,6 @@
 using System;
 
-namespace TC.Doman {
+namespace TC.Maps.Entitites {
     
     public class TtPRA {
         public virtual string WG_Name { get; set; }
@@ -26,6 +26,6 @@ namespace TC.Doman {
         public virtual string DP { get; set; }
         public virtual string Comment { get; set; }
         public virtual bool? UNOS_Certification_Complete { get; set; }
-        public virtual System.Guid Tenant_ID { get; set; }
+        public virtual Guid Tenant_ID { get; set; }
     }
 }

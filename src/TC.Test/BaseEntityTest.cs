@@ -5,7 +5,6 @@ using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Dialect;
 using NHibernate.Mapping.ByCode;
-using Zen;
 using Zen.Core;
 using Zen.Data;
 
@@ -14,8 +13,8 @@ namespace TC.Tests
     public abstract class BaseEntityTest<T, TId> where T : class, IDomainEntity<TId>, new()
     {
         // set to run tests using explicit transactions
-        private bool _usingTx = true;  
-        
+        private readonly bool _usingTx = true;
+
         // subject under test
         protected IGenericDao Dao;
                 
@@ -26,8 +25,8 @@ namespace TC.Tests
             var cfg = new Configuration();
             cfg.DataBaseIntegration(c =>
             {
-                c.ConnectionString = @"Data Source=DSTOEVERPC;Initial Catalog=TCTest5201;Integrated Security=True;Pooling=False";
-                //c.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=Transchart52;Integrated Security=True;Pooling=False";
+                //c.ConnectionString = @"Data Source=DSTOEVERPC;Initial Catalog=TCTest5201;Integrated Security=True;Pooling=False";
+                c.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=Transchart52;Integrated Security=True;Pooling=False";
                 c.Dialect<MsSql2008Dialect>();
                 c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
                 c.LogSqlInConsole = true;
@@ -43,8 +42,9 @@ namespace TC.Tests
             var mappings = from t in typeof(IDbMap).Assembly.GetTypes()
                            where t.GetInterfaces().Contains(typeof(IDbMap)) 
                            select t;
-            Console.WriteLine("{0} mappings in domain model.", mappings.Count());
-            mapper.AddMappings(mappings);
+            var enumerable = mappings as Type[] ?? mappings.ToArray();
+            Console.WriteLine("{0} mappings in domain model.", enumerable.Count());
+            mapper.AddMappings(enumerable);
             HbmMapping domainMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
             cfg.AddMapping(domainMapping);
             

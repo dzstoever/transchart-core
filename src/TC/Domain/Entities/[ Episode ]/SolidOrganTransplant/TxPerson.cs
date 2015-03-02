@@ -1,4 +1,4 @@
-namespace TC.Domain.SolidOrganTransplant
+namespace TC.Domain.Entities.SolidOrganTransplant
 {
     public class TxPerson : Person
     {

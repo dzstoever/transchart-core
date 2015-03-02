@@ -1,13 +1,8 @@
-using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
-using TC.Domain;
+using NHibernate.Mapping.ByCode.Conformist;
+using TC.Domain.Entities;
 
-
-namespace TC.Maps 
+namespace TC.Maps.Entitites 
 {
         
     public class ConfigUserTypeMap : ClassMapping<ConfigUserType>, Zen.Data.IDbMap

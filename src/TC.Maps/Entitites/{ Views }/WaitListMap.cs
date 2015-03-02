@@ -1,8 +1,8 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using TC.Domain;
+using TC.Domain.Entities;
 
-namespace TC.Maps 
+namespace TC.Maps.Entitites 
 {
         
     public class WaitListMap : ClassMapping<WaitList>, Zen.Data.IDbMap

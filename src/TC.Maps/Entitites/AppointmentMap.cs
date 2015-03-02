@@ -1,14 +1,9 @@
-using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using NHibernate.Mapping.ByCode.Conformist;
-using NHibernate.Mapping.ByCode;
-using TC.Domain;
+using TC.Domain.Entities;
+using Zen.Data;
 
-namespace TC.Maps 
+namespace TC.Maps.Entitites 
 {    
-    public class AppointmentMap : MultiEnteredByMap<Appointment, AppointmenTId>, Zen.Data.IDbMap
+    public class AppointmentMap : MultiEnteredByMap<Appointment, AppointmenTId>, IDbMap
     {        
         public AppointmentMap() 
         { 
@@ -21,7 +16,7 @@ namespace TC.Maps
                 compId.Property(c => c.VisitTime);
                 compId.Property(c => c.VisitTypeID);                
             });
-            ;
+            
             
             Property(x => x.LocationID, map => map.Precision(10));
 			Property(x => x.VisitStatus, map => map.Length(50));

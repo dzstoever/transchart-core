@@ -1,14 +1,10 @@
-using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
-using TC.Domain;
+using TC.Domain.Entities;
+using Zen.Data;
 
-namespace TC.Maps 
+namespace TC.Maps.Entitites 
 {
-    public class AdmissionBedHistoryMap : MultiEnteredByMap<AdmissionBedHistory, int>, Zen.Data.IDbMap
+    public class AdmissionBedHistoryMap : MultiEnteredByMap<AdmissionBedHistory, int>, IDbMap
     {
         public AdmissionBedHistoryMap()
         {
@@ -16,7 +12,7 @@ namespace TC.Maps
 						
             Id(x => x.Id, map => map.Generator(Generators.Identity));
 
-            var uniqueKeyName = "UniqueAdmissionBedHistory";// a unique constraint...
+            const string uniqueKeyName = "UniqueAdmissionBedHistory"; // a unique constraint...
             Property(x => x.MRN, map => { map.NotNullable(true); map.Length(15); map.UniqueKey(uniqueKeyName); });
             Property(x => x.AdmitDate, map => map.UniqueKey(uniqueKeyName));
 			            

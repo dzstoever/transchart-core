@@ -81,7 +81,7 @@ namespace TC.Maps
 
         public SqlType[] SqlTypes
         {
-            get { return new SqlType[] { new SqlType(DbType.Binary) }; }
+            get { return new[] { new SqlType(DbType.Binary) }; }
         }
 
         public int Compare(object x, object y)

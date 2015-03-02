@@ -1,6 +1,6 @@
 using System;
 
-namespace TC.Doman 
+namespace TC.Maps.Entitites 
 {
     
     public class TtCrossMatch {
@@ -22,6 +22,6 @@ namespace TC.Doman
         public virtual string Titer { get; set; }
         public virtual string Channel_Shift { get; set; }
         public virtual int ID { get; set; }
-        public virtual System.Guid Tenant_ID { get; set; }
+        public virtual Guid Tenant_ID { get; set; }
     }
 }

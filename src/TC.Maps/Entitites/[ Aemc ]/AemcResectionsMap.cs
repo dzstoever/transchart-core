@@ -1,15 +1,9 @@
-using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using NHibernate.Mapping.ByCode.Conformist;
-using NHibernate.Mapping.ByCode;
-using TC.Domain;
+using TC.Domain.Entities;
+using Zen.Data;
 
-
-namespace TC.Maps 
+namespace TC.Maps.Entitites 
 {
-    public class AemcResectionsMap : MultiMap<AemcResections, AemcResectionsId>, Zen.Data.IDbMap 
+    public class AemcResectionsMap : MultiMap<AemcResections, AemcResectionsId>, IDbMap 
     {
         public AemcResectionsMap() 
         {

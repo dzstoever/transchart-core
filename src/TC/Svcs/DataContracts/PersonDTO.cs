@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace TC.DataModels 
+namespace TC.Svcs.DataContracts 
 {
     [DataContract(Namespace = "")]
     public class PersonMinDTO

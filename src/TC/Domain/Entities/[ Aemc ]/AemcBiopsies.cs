@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace TC.Domain 
+namespace TC.Domain.Entities 
 {
     [Serializable]
     public class AemcBiopsiesId : NaturalKeyStringInt32

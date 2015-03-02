@@ -1,11 +1,12 @@
 ﻿using NHibernate.Mapping.ByCode.Conformist;
 using TC.Domain;
+using TC.Domain.Entities;
 
 namespace TC.Maps
 {
     public abstract class BaseMap<T, TId> : ClassMapping<T> where T : Zen.Core.DomainEntity<TId>
     {
-        protected BaseMap() : base()
+        protected BaseMap()
         {
             Lazy(true); DynamicInsert(true); DynamicUpdate(true);
 
@@ -90,7 +91,7 @@ namespace TC.Maps
     /// </summary>
     public abstract class MultiMap<T, TId> : BaseMap<T, TId> where T : MultiEntity<TId>
     {        
-        protected MultiMap() : base()
+        protected MultiMap()
         {
             ManyToOne(x => x.Tenant, m =>
             {
@@ -107,7 +108,6 @@ namespace TC.Maps
     public abstract class EnteredByMap<T, TId> : BaseMap<T, TId> where T : EnteredByEntity<TId>
     {
         protected EnteredByMap()
-            : base()
         {
             Property(x => x.EnteredBy, map => map.Length(15));
             Property(x => x.EnteredDate);
@@ -120,7 +120,7 @@ namespace TC.Maps
     /// </summary>
     public abstract class MultiEnteredByMap<T, TId> : MultiMap<T, TId> where T : MultiEnteredByEntity<TId>
     {
-        protected MultiEnteredByMap() : base()
+        protected MultiEnteredByMap()
         {
             Property(x => x.EnteredBy, map => map.Length(15));
             Property(x => x.EnteredDate);

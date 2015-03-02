@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TC.Domain;
+using TC.Domain.Entities;
 using Zen.Data.QueryModel;
 
 namespace TC.Tests.Domain
@@ -17,12 +19,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void PersonCRUD()
         {
-            var entity = base.Create("TESTING123");
+            var entity = Create("TESTING123");
 
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -33,12 +36,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void TenantCRUD()
         {
-            var entity = base.Create();            
+            var entity = Create();            
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -48,17 +52,18 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AccountResourceSecurityCRUD()
         {
-            var entity = base.Create(new AccountResourceSecurity
+            var entity = Create(new AccountResourceSecurity
             {
                 Id = NaturalKeyStringStringStringString.GenForTest<AccountResourceSecurityId>(),
                 CreatedOn = DateTime.Now,
                 CreatedBy = "Test"
             });
                        
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -68,12 +73,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionCRUD()
         {
-            var entity = base.Create(NaturalKeyStringDateTime.GenForTest<AdmissionId>());            
+            var entity = Create(NaturalKeyStringDateTime.GenForTest<AdmissionId>());            
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
 
         /// <summary>
@@ -95,7 +101,7 @@ namespace TC.Tests.Domain
             Dao.SetFetchMode("DischargeTo", FetchModes.Eager);
             Dao.SetFetchMode("FollowUp", FetchModes.Eager);                        
             
-            base.Read();
+            Read();
         }
 
         /// <summary>
@@ -105,7 +111,7 @@ namespace TC.Tests.Domain
         public void AdmissionReadLazy()
         {
             // note: associations are lazy by default            
-            base.Read();
+            Read();
         }
     }
 
@@ -117,12 +123,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionBedHistoryCRUD()
         {
-            var entity = base.Create(new AdmissionBedHistory { MRN = "" });
+            var entity = Create(new AdmissionBedHistory { MRN = "" });
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -132,12 +139,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionCancelledCRUD()
         {
-            var entity = base.Create(NaturalKeyStringDateTime.GenForTest<AdmissionCancelledId>());            
+            var entity = Create(NaturalKeyStringDateTime.GenForTest<AdmissionCancelledId>());            
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -147,12 +155,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionDiagnosisCRUD()
         {
-            var entity = base.Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionDiagnosisId>());
+            var entity = Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionDiagnosisId>());
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -162,12 +171,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionDischargeCancelledCRUD()
         {
-            var entity = base.Create(NaturalKeyStringDateTime.GenForTest<AdmissionDischargeCancelledId>());
+            var entity = Create(NaturalKeyStringDateTime.GenForTest<AdmissionDischargeCancelledId>());
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -177,12 +187,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionDischargeTherapyCRUD()
         {
-            var entity = base.Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionDischargeTherapyId>());
+            var entity = Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionDischargeTherapyId>());
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -192,12 +203,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionDischargeToCRUD()
         {
-            var entity = base.Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionDischargeToId>());
+            var entity = Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionDischargeToId>());
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -207,12 +219,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionFollowUpCRUD()
         {
-            var entity = base.Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionFollowUpId>());
+            var entity = Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionFollowUpId>());
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -222,12 +235,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionInvProceduresCRUD()
         {
-            var entity = base.Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionInvProceduresId>());
+            var entity = Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionInvProceduresId>());
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -237,12 +251,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionReasonsCRUD()
         {
-            var entity = base.Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionReasonsId>());
+            var entity = Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionReasonsId>());
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -252,12 +267,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AdmissionTherapyCRUD()
         {
-            var entity = base.Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionTherapyId>());
+            var entity = Create(NaturalKeyStringStringDateTime.GenForTest<AdmissionTherapyId>());
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -269,12 +285,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AemcBiopsiesCRUD()
         {
-            var entity = base.Create(NaturalKeyStringInt32.GenForTest<AemcBiopsiesId>());
+            var entity = Create(NaturalKeyStringInt32.GenForTest<AemcBiopsiesId>());
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -284,12 +301,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AemcResectionsCRUD()
         {
-            var entity = base.Create(NaturalKeyStringInt32.GenForTest<AemcResectionsId>());
+            var entity = Create(NaturalKeyStringInt32.GenForTest<AemcResectionsId>());
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -300,13 +318,14 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AppointmentCRUD()
         {
-            var entity = base.Create(NaturalKeyStringDateTimeDateTimeInt32.GenForTest<AppointmenTId>());
+            var entity = Create(NaturalKeyStringDateTimeDateTimeInt32.GenForTest<AppointmenTId>());
             
             entity.Notes = "make a change";
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
 
         
@@ -325,7 +344,7 @@ namespace TC.Tests.Domain
         //[TestMethod]
         public void AppointmentPersistNew()
         {
-            base.Persist(new Appointment
+            Persist(new Appointment
             {
                 Id = NaturalKeyStringDateTimeDateTimeInt32.GenForTest<AppointmenTId>()
             });
@@ -342,7 +361,7 @@ namespace TC.Tests.Domain
         //[TestMethod]
         public void AppointmentPersistChanges()
         {
-            var entity = base.Create(
+            var entity = Create(
                 NaturalKeyStringDateTimeDateTimeInt32.GenForTest<AppointmenTId>());
 
             entity.Notes = "some new data";
@@ -350,7 +369,7 @@ namespace TC.Tests.Domain
             // it should INSERT or UPDATE so it issues a select prior to updating...            
             // because there is NO Id to check and NO Version to check yada-yada
             // so what can we check? we need an 'unsaved-value' set in the mapping
-            base.Persist(entity);
+            Persist(entity);
         }
     }
 
@@ -361,17 +380,18 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void ConfigUserTypeCRUD()
         {
-            var entity = base.Create(new ConfigUserType
+            var entity = Create(new ConfigUserType
             {
                 UserType = "SomeNewType",
                 Description = "",
                 Enabled = false
             });
             
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
 
         // this creates too many selects (n+1)...
@@ -399,16 +419,18 @@ namespace TC.Tests.Domain
         {
             // grap a config user type to assign to the new user
             var configUserTypes = Dao.FetchAll<ConfigUserType>(0, 1) as List<ConfigUserType>;
-            var entity = base.Create(new User
+            Debug.Assert(configUserTypes != null, "configUserTypes != null");
+            var entity = Create(new User
             {
                 Id = "SomeNewUser",
                 ConfigUserType = configUserTypes[0]
             });
 
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+                Read();
         }
     }
 
@@ -418,12 +440,13 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void AuditUserAccessCRUD()
         {
-            var entity = base.Create();
+            var entity = Create();
 
-            base.Update(entity);
-            base.Delete(entity);
+            Update(entity);
+            Delete(entity);
 
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -436,7 +459,8 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void PatientViewRead()
         {
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -446,7 +470,8 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void CandidateViewRead()
         {
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 
@@ -456,7 +481,8 @@ namespace TC.Tests.Domain
         [TestMethod]
         public void WaitListViewRead()
         {
-            var entities = base.Read();
+            //var entities = 
+            Read();
         }
     }
 

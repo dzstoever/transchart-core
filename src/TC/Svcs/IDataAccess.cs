@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using System.Text;
-using TC.DataModels;
+using TC.Svcs.DataContracts;
 using Zen.Data.QueryModel;
-using TC.Domain;
 
 namespace TC.Svcs
 {

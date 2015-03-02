@@ -24,22 +24,19 @@ using Environment = System.Environment;
 
 namespace TC.Utility.Controls
 {
-    internal delegate void IntDelegate(int value);
-    internal delegate void BoolDelegate(bool value);
-    internal delegate void StringDelegate(string text);
-
+    
     public partial class UpstateControl : UserControl
     {
         const char HL7Seperator = (char)0x1C;
 
         // these are saved with each table set
-        private static string DateTimeFormat = "yyyy-MM-dd hh:mm:ss";
-        private static string FloatFormat = "F2";
-        private static string IntFormat = "D"; //Ex. D8 would be 00001234
+        private static string _dateTimeFormat = "yyyy-MM-dd hh:mm:ss";
+        private static string _floatFormat = "F2";
+        private static string _intFormat = "D"; //Ex. D8 would be 00001234
         // these are universal
-        private static string SqlDialect;
-        private static string SaveLocation;
-        private static int BatchSize;
+        private static string _sqlDialect;
+        private static string _saveLocation;
+        private static int _batchSize;
 
         
         public UpstateControl()
@@ -56,13 +53,13 @@ namespace TC.Utility.Controls
 
         public void BindAppSettings()
         {
-            SqlDialect = App.AppSettings.SqlDialect;
-            SaveLocation = App.AppSettings.SaveLocation;
-            BatchSize = Convert.ToInt32(App.AppSettings.BatchSize);
+            _sqlDialect = App.AppSettings.SqlDialect;
+            _saveLocation = App.AppSettings.SaveLocation;
+            _batchSize = Convert.ToInt32(App.AppSettings.BatchSize);
             
-            uxSqlDialect.Text = SqlDialect;
-            uxSaveLocation.Text = SaveLocation;
-            uxBatchSize.Value = BatchSize;
+            uxSqlDialect.Text = _sqlDialect;
+            uxSaveLocation.Text = _saveLocation;
+            uxBatchSize.Value = _batchSize;
             
         }
 
@@ -86,23 +83,23 @@ namespace TC.Utility.Controls
         private string _dbCnnString;
         private Configuration _cfg;
         private ISessionFactory _sessionFactory = null;
-        private readonly string MSH =
+        private readonly string _msh =
             @"MSH|^~\&|||||||ORU^R01||<UniqueMessageID>|2.2|" + Environment.NewLine +
             @"PID|||<MRN>||<LastName>^<FirstName>^<MiddleInitial>^||<DOB>|<Sex>|||||||||||<SSN>|" +
             Environment.NewLine +
             @"PV1||O|^^^Unknown Location||||000000^UNKNOWN^ORDERING PROVIDER^||||||||||||" + Environment.NewLine +
             @"ORC|RE|||" + Environment.NewLine +
             @"OBR|1||<AccessionNumber>|<ProcedureID>|||<ObservationDate>||||||||^^^|000000^UNKNOWN^ORDERING PROVIDER^|||||||||F|";        
-        private readonly string OBX =
+        private readonly string _obx =
             @"OBX|<SeTId>||<ComponenTId>|<SubComponenTId>|<ObservationValue>||||";
 
         
-        private void buttonClearRtb_Click(object sender, EventArgs e)
+        private void ButtonClearRtbClick(object sender, EventArgs e)
         {
             RtbLog.Clear();
         }
 
-        private void uxSavedSets_Enter(object sender, EventArgs e)
+        private void UxSavedSetsEnter(object sender, EventArgs e)
         {
             uxSavedSets.Items.Clear();
             uxSavedSets.DisplayMember = "Name";
@@ -111,37 +108,38 @@ namespace TC.Utility.Controls
                 uxSavedSets.Items.Add(set);
         }
 
-        private void uxSavedSets_SelectionChangeCommitted(object sender, EventArgs e)
+        private void UxSavedSetsSelectionChangeCommitted(object sender, EventArgs e)
         {
             var cbox = (ComboBox)sender;
             var sItem = cbox.SelectedItem;
             listBoxTableSets.Items.Clear();
             var tableSet = sItem as DbTableSet;
             if (tableSet == null) return;
-            var tableList = ApplicationSettings.StringToList(tableSet.TableNamesCsv);
+            var tableList = tableSet.TableNamesCsv.CsvToList();
+                //ApplicationSettings.StringToList(tableSet.TableNamesCsv);
             foreach (var table in tableList)
                 listBoxTableSets.Items.Add(table);
         }
         
-        private void uxSqlDialect_SelectionChangeCommitted(object sender, EventArgs e)
+        private void UxSqlDialectSelectionChangeCommitted(object sender, EventArgs e)
         {
-            SqlDialect = uxSqlDialect.SelectedItem.ToString();
-            App.AppSettings.SqlDialect = SqlDialect;
+            _sqlDialect = uxSqlDialect.SelectedItem.ToString();
+            App.AppSettings.SqlDialect = _sqlDialect;
         }
 
-        private void uxBatchSize_ValueChanged(object sender, EventArgs e)
+        private void UxBatchSizeValueChanged(object sender, EventArgs e)
         {
-            BatchSize = Convert.ToInt32(uxBatchSize.Value);
-            App.AppSettings.BatchSize = BatchSize.ToString();
+            _batchSize = Convert.ToInt32(uxBatchSize.Value);
+            App.AppSettings.BatchSize = _batchSize.ToString();
         }
 
-        private void uxSaveLocation_TextChanged(object sender, EventArgs e)
+        private void UxSaveLocationTextChanged(object sender, EventArgs e)
         {
-            SaveLocation = uxSaveLocation.Text;
-            App.AppSettings.SaveLocation = SaveLocation;
+            _saveLocation = uxSaveLocation.Text;
+            App.AppSettings.SaveLocation = _saveLocation;
         }
 
-        private void buttonAddTableToSet_Click(object sender, EventArgs e)
+        private void ButtonAddTableToSetClick(object sender, EventArgs e)
         {
             var hashSet = new HashSet<string>();
             foreach (var i in listBoxTableSets.Items)
@@ -156,7 +154,7 @@ namespace TC.Utility.Controls
                 listBoxTableSets.Items.Add(h);
         }
 
-        private void buttonSaveTableSet_Click(object sender, EventArgs e)
+        private void ButtonSaveTableSetClick(object sender, EventArgs e)
         {
             var tableNames = listBoxTableSets.Items;
             var tableList = (from object t in (tableNames) select t.ToString()).ToList();
@@ -165,7 +163,7 @@ namespace TC.Utility.Controls
             {
                 Id = Guid.NewGuid(),
                 Name = string.IsNullOrWhiteSpace(textNewTableSetName.Text) ? "No Name" : textNewTableSetName.Text,
-                TableNamesCsv = ApplicationSettings.ListToString(tableList),
+                TableNamesCsv = tableList.ListToCsv(),
                 Delimiter = "|",
                 DateTimeFormat = uxDateFormat.Text, 
                 FloatFormat = uxFloatFormat.Text,
@@ -178,18 +176,18 @@ namespace TC.Utility.Controls
             uxSavedSets.Text = tableSet.Name; 
         }
 
-        private void buttonExportSetToFlatFiles_Click(object sender, EventArgs e)
+        private void ButtonExportSetToFlatFilesClick(object sender, EventArgs e)
         {
-            DateTimeFormat = uxDateFormat.Text;
-            FloatFormat = uxFloatFormat.Text;
-            IntFormat = uxIntegerFormat.Text;
+            _dateTimeFormat = uxDateFormat.Text;
+            _floatFormat = uxFloatFormat.Text;
+            _intFormat = uxIntegerFormat.Text;
 
             Task.Factory.StartNew(ExportToFlat, new CancellationToken(),
                 TaskCreationOptions.LongRunning, TaskScheduler.Default)
                 .ContinueWith(TaskExceptionHandler, TaskContinuationOptions.OnlyOnFaulted);
         }
 
-        private void buttonExportTableToHL7_Click(object sender, EventArgs e)
+        private void ButtonExportTableToHL7Click(object sender, EventArgs e)
         {
             if (cbUseNH.Checked)
             {                
@@ -215,6 +213,7 @@ namespace TC.Utility.Controls
         }
 
         
+
         private void StatusUpdate(string message)
         {
             if (RtbLog.InvokeRequired)
@@ -356,17 +355,17 @@ namespace TC.Utility.Controls
                 else if ((type.ToString() == "System.DateTime"))
                 {
                     var datetime = (DateTime)field;
-                    fitems[k] = datetime.ToString(DateTimeFormat); //ExcelWrapper.
+                    fitems[k] = datetime.ToString(_dateTimeFormat); //ExcelWrapper.
                 }
                 else if (type.ToString() == "System.Decimal" || type.ToString() == "System.Single" || type.ToString() == "System.Double")
                 {
                     var dval = Convert.ToDecimal(field);
-                    fitems[k] = dval.ToString(FloatFormat); //ExcelWrapper.
+                    fitems[k] = dval.ToString(_floatFormat); //ExcelWrapper.
                 }
                 else if (type.ToString() == "System.Int16" || type.ToString() == "System.Int32" || type.ToString() == "System.Int64")
                 {
                     var ival = Convert.ToInt64(field);
-                    fitems[k] = ival.ToString(IntFormat); //ExcelWrapper.
+                    fitems[k] = ival.ToString(_intFormat); //ExcelWrapper.
                 }
                 else if (type.ToString() == "System.String")
                 {
@@ -413,9 +412,9 @@ namespace TC.Utility.Controls
                 _cfg.DataBaseIntegration(c =>
                 {
                     c.ConnectionString = _dbCnnString;
-                    if (SqlDialect == "MsSql2012Dialect")
+                    if (_sqlDialect == "MsSql2012Dialect")
                         c.Dialect<MsSql2012Dialect>();
-                    else if (SqlDialect == "MsSql2008Dialect")
+                    else if (_sqlDialect == "MsSql2008Dialect")
                         c.Dialect<MsSql2008Dialect>();
                     else
                         c.Dialect<MsSql2005Dialect>();
@@ -511,7 +510,7 @@ namespace TC.Utility.Controls
                     var batchCount = 0;
                     do
                     {
-                        var recordsExpected = (totalCount - recordsProcessed) < BatchSize ? (totalCount - recordsProcessed) : BatchSize;
+                        var recordsExpected = (totalCount - recordsProcessed) < _batchSize ? (totalCount - recordsProcessed) : _batchSize;
                         StringBuilder sb = null;
                         switch (tableName)
                         {
@@ -553,7 +552,7 @@ namespace TC.Utility.Controls
             
             IEnumerable<TtHLA> tts = null;
             if (cbUseNH.Checked)// NH Fails in Upstate environment? can't determine cause... 
-                tts = dao.Fetch<TtHLA>(new Query(QueryTypes.Hql, "from TtHLA t join fetch t.Person"), batchPage, BatchSize);
+                tts = dao.Fetch<TtHLA>(new Query(QueryTypes.Hql, "from TtHLA t join fetch t.Person"), batchPage, _batchSize);
             else
                 tts = ReadBatchHLA(ref recordCounter);
             
@@ -572,7 +571,7 @@ namespace TC.Utility.Controls
                 if (p == null) continue;// should never happen                              
                 
                 // change all rows into HL7 messages
-                string msh = MSH;
+                string msh = _msh;
                 var mshId = DateTime.Now.ToString("yyyyMMddhhmmssfffff");
                 int seTId = 0;
                 msh = msh.Replace("<UniqueMessageID>", mshId);
@@ -593,103 +592,103 @@ namespace TC.Utility.Controls
 
                 if (entity.A1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "A1")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.A1);
                 if (entity.A2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "A2")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.A2);
                 if (entity.B1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "B1")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.B1);
                 if (entity.B2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "B2")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.B2);
                 if (entity.C1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "C1")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.C1);
                 if (entity.C2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "C2")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.C2);
                 if (entity.DR1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DR1")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DR1);
                 if (entity.DR2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DR2")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DR2);
                 if (entity.DP1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DP1")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DP1);
                 if (entity.DP2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DP2")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DP2);
                 if (entity.DQ1 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DQ1")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DQ1);
                 if (entity.DQ2 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DQ2")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DQ2);
                 if (entity.BW4 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "BW4")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.BW4);
                 if (entity.BW6 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "BW6")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.BW6);
                 if (entity.DRW51 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DRW51")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DRW51);
                 if (entity.DRW52 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DRW52")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DRW52);
                 if (entity.DRW53 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DRW53")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DRW53);
@@ -713,7 +712,7 @@ namespace TC.Utility.Controls
 
             IEnumerable<TtPRA> tts = null;
             if (cbUseNH.Checked)// NH Fails in Upstate environment? can't determine cause... 
-                tts = dao.Fetch<TtPRA>(new Query(QueryTypes.Hql, "from TtPRA t join fetch t.Person"), batchPage, BatchSize);
+                tts = dao.Fetch<TtPRA>(new Query(QueryTypes.Hql, "from TtPRA t join fetch t.Person"), batchPage, _batchSize);
             else
                 tts = ReadBatchPRA(ref recordCounter);
             
@@ -732,7 +731,7 @@ namespace TC.Utility.Controls
                 if (p == null) continue;// should never happen  
                 
                 // change all rows into HL7 messages
-                string msh = MSH;
+                string msh = _msh;
                 var mshId = DateTime.Now.ToString("yyyyMMddhhmmssfffff");
                 int seTId = 0;
                 msh = msh.Replace("<UniqueMessageID>", mshId);
@@ -753,68 +752,68 @@ namespace TC.Utility.Controls
 
                 if (entity.Result != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "Result")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.Result);
                 if (entity.Specificity != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "Result")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.Specificity);
                 if (entity.A != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "A")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.A);
                 if (entity.B != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "B")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.B);
                 if (entity.BW4 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "BW4")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.BW4);
                 if (entity.BW6 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "BW6")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.BW6);
                 if (entity.DR != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DR")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DR);
                 if (entity.DQ != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DQ")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DQ);
                 if (entity.CW != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "CW")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.CW);
 
                 if (entity.DR515253 != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DR515253")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DR515253);
                 if (entity.DP != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "DP")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.DP);
@@ -830,7 +829,7 @@ namespace TC.Utility.Controls
                         for (int i = 0; i < comments.Length; i++)
                         {
                             msh = msh + Environment.NewLine +
-                                  OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                                  _obx.Replace("<SeTId>", (seTId + 1).ToString())
                                       .Replace("<ComponenTId>", "Comment")
                                       .Replace("<SubComponenTId>", i.ToString())
                                       .Replace("<ObservationValue>", comments[i]);
@@ -858,7 +857,7 @@ namespace TC.Utility.Controls
 
             IEnumerable<TtCrossMatch> tts = null;
             if (cbUseNH.Checked)// NH Fails in Upstate environment? can't determine cause... 
-                tts = dao.Fetch<TtCrossMatch>(new Query(QueryTypes.Hql, "from TtCrossMatch t join fetch t.Person"), batchPage, BatchSize);
+                tts = dao.Fetch<TtCrossMatch>(new Query(QueryTypes.Hql, "from TtCrossMatch t join fetch t.Person"), batchPage, _batchSize);
             else
                 tts = ReadBatchCrossMatch(ref recordCounter);
 
@@ -877,7 +876,7 @@ namespace TC.Utility.Controls
                 if (p == null) continue;// should never happen 
 
                 // change all rows into HL7 messages
-                string msh = MSH;
+                string msh = _msh;
                 var mshId = DateTime.Now.ToString("yyyyMMddhhmmssfffff");
                 int seTId = 0;
                 msh = msh.Replace("<UniqueMessageID>", mshId);
@@ -898,31 +897,31 @@ namespace TC.Utility.Controls
 
                 if (entity.Result != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "Result")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.Result);
                 if (entity.Id.CellType != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "CellType")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.Id.CellType);
                 if (entity.TargetCellSource != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "TargetCellSource")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.TargetCellSource);
                 if (entity.Titer != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "Titer")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.Titer);
                 if (entity.ChannelShift != null)
                     msh = msh + Environment.NewLine +
-                          OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                          _obx.Replace("<SeTId>", (seTId + 1).ToString())
                               .Replace("<ComponenTId>", "ChannelShift")
                               .Replace("<SubComponenTId>", "")
                               .Replace("<ObservationValue>", entity.ChannelShift);
@@ -939,7 +938,7 @@ namespace TC.Utility.Controls
                         for (int i = 0; i < comments.Length; i++)
                         {
                             msh = msh + Environment.NewLine +
-                                  OBX.Replace("<SeTId>", (seTId + 1).ToString())
+                                  _obx.Replace("<SeTId>", (seTId + 1).ToString())
                                       .Replace("<ComponenTId>", "Comments")
                                       .Replace("<SubComponenTId>", i.ToString())
                                       .Replace("<ObservationValue>", comments[i]);
@@ -978,7 +977,7 @@ namespace TC.Utility.Controls
             var dt = cmd.DataTable;
             var columnNames = GetHeaderArrayFromTable(dt);
             var startAt = recordCounter;
-            var page = cmd.GetPage(BatchSize, startAt, columnNames);
+            var page = cmd.GetPage(_batchSize, startAt, columnNames);
             var ttList = new List<TtHLA>();
             foreach (DataRow row in page.Rows)
             {
@@ -1047,7 +1046,7 @@ namespace TC.Utility.Controls
             var dt = cmd.DataTable;
             var columnNames = GetHeaderArrayFromTable(dt);
             var startAt = recordCounter;
-            var page = cmd.GetPage(BatchSize, startAt, columnNames);
+            var page = cmd.GetPage(_batchSize, startAt, columnNames);
             var ttList = new List<TtPRA>();
             foreach (DataRow row in page.Rows)
             {
@@ -1103,7 +1102,7 @@ namespace TC.Utility.Controls
             var dt = cmd.DataTable;
             var columnNames = GetHeaderArrayFromTable(dt);
             var startAt = recordCounter;
-            var page = cmd.GetPage(BatchSize, startAt, columnNames);
+            var page = cmd.GetPage(_batchSize, startAt, columnNames);
             var ttList = new List<TtCrossMatch>();
             foreach (DataRow row in page.Rows)
             {
@@ -1215,5 +1214,9 @@ namespace TC.Utility.Controls
 
     }
 
-    
+
+    public interface IUtilityUserControl
+    {
+    }
+
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 
-
-namespace TC.Domain
+namespace TC.Domain.Components
 {
     public abstract class Diagnosis
     {

@@ -1,13 +1,6 @@
-using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using NHibernate.Mapping.ByCode.Conformist;
-using NHibernate.Mapping.ByCode;
-using TC.Domain;
+using TC.Domain.Entities;
 
-
-namespace TC.Maps 
+namespace TC.Maps.Entitites 
 {
     public class AemcBiopsiesMap : MultiMap<AemcBiopsies, AemcBiopsiesId>, Zen.Data.IDbMap 
     {

@@ -16,32 +16,32 @@ namespace TC.Utility
         /// <remarks>
         /// converts collection of strings to comma-seperated list of string
         /// </remarks>
-        public static string ListToString(IList list)
-        {
-            if (list.Count > 0)
-            {
-                var sb = new StringBuilder((string)list[0]);
-                list.RemoveAt(0);
-                foreach (string val in list)
-                    sb.Append("," + val);
-                return sb.ToString();
-            }
-            return "";
-        }
+        //public static string ListToString(IList list)
+        //{
+        //    if (list.Count > 0)
+        //    {
+        //        var sb = new StringBuilder((string)list[0]);
+        //        list.RemoveAt(0);
+        //        foreach (string val in list)
+        //            sb.Append("," + val);
+        //        return sb.ToString();
+        //    }
+        //    return "";
+        //}
 
         /// <remarks>
         /// listvals must be comma-seperated list of strings
         /// </remarks>
-        public static IList StringToList(string listvals)
-        {
-            var list = new List<string>();
-            if (!string.IsNullOrEmpty(listvals))
-            {
-                var vals = listvals.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                list.AddRange(vals.Select(val => val.Trim()));
-            }
-            return list;
-        }
+        //public static IList StringToList(string listvals)
+        //{
+        //    var list = new List<string>();
+        //    if (!string.IsNullOrEmpty(listvals))
+        //    {
+        //        var vals = listvals.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+        //        list.AddRange(vals.Select(val => val.Trim()));
+        //    }
+        //    return list;
+        //}
 
 
 

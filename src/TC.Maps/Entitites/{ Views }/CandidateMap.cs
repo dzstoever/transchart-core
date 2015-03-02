@@ -1,11 +1,12 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using TC.Domain;
+using TC.Domain.Entities;
+using Zen.Data;
 
-namespace TC.Maps 
+namespace TC.Maps.Entitites 
 {
        
-    public class CandidateMap : ClassMapping<Candidate>, Zen.Data.IDbMap 
+    public class CandidateMap : ClassMapping<Candidate>, IDbMap 
     {
 
         public CandidateMap() 

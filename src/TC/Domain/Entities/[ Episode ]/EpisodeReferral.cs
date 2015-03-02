@@ -1,6 +1,6 @@
 using System;
 
-namespace TC.Domain 
+namespace TC.Domain.Entities 
 {    
     public class EpisodeReferral : MultiEnteredByEntity<int> 
     {        

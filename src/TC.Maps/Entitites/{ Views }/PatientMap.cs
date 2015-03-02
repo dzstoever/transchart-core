@@ -1,11 +1,11 @@
 using NHibernate.Mapping.ByCode;
-using NHibernate.Mapping.ByCode.Conformist;
-using TC.Domain;
+using TC.Domain.Entities;
+using Zen.Data;
 
-namespace TC.Maps 
+namespace TC.Maps.Entitites 
 {
         
-    public class PatientMap : EnteredByMap<Patient, string>, Zen.Data.IDbMap 
+    public class PatientMap : EnteredByMap<Patient, string>, IDbMap 
     {
 
         public PatientMap() 

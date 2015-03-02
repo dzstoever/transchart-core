@@ -1,4 +1,6 @@
-namespace TC.Domain.SolidOrganTransplant
+using TC.Domain.Components;
+
+namespace TC.Domain.Entities.SolidOrganTransplant
 {
     // NOTE: DbTableName = EpisodeDonor
     public class DonorEpisode : TxEpisode // MultiEnteredByEntity<int>

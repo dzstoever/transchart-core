@@ -1,13 +1,8 @@
 using System;
-using System.Text;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-using System.Data;
-using System.Data.SqlClient;
-
-namespace TC.Domain 
+namespace TC.Domain.Entities 
 {
     /// <summary>
     /// This is a name swap class please Use AuditUserAccess, instead

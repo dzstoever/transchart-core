@@ -1,4 +1,4 @@
-namespace TC.Domain.HeartDisease
+namespace TC.Domain.Entities.HeartDisease
 {
     public class HDEpisode : MultiEnteredByEntity<int>
     {

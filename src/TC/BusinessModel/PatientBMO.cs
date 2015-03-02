@@ -1,4 +1,4 @@
-﻿namespace TC.BusinessModels
+﻿namespace TC.BusinessModel
 {
     public class PatientBMO
     {

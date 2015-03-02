@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using TC.BusinessModels;
-using TC.ViewModels;
+using TC.BusinessModel;
 
 namespace TC.Website.Controllers
 {

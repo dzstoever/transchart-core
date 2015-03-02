@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-
-namespace TC.Domain 
+namespace TC.Domain.Entities 
 {
     [Serializable]
     public class AdmissionId : NaturalKeyStringDateTime

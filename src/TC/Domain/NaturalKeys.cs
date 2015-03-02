@@ -21,8 +21,9 @@ namespace TC.Domain
     [Serializable]
     public abstract class NaturalKeyStringInt32
     {
-        public NaturalKeyStringInt32() { }
-        public NaturalKeyStringInt32(string key1, int key2)
+        protected NaturalKeyStringInt32() { }
+
+        protected NaturalKeyStringInt32(string key1, int key2)
         {
             Key1 = key1;
             Key2 = key2;
@@ -34,7 +35,7 @@ namespace TC.Domain
         public override bool Equals(object o)
         {
             if (o == null) return false;
-            if (object.ReferenceEquals(this, o)) return true;
+            if (ReferenceEquals(this, o)) return true;
             var id = o as NaturalKeyStringInt32;
             if (id == null) return false;
             if (Key1 != id.Key1) return false;
@@ -50,7 +51,7 @@ namespace TC.Domain
         //test helper
         public static T GenForTest<T>() where T : NaturalKeyStringInt32, new()
         {
-            return new T()
+            return new T
             {
                 Key1 = "s1",
                 Key2 = new Random(37).Next()
@@ -61,8 +62,9 @@ namespace TC.Domain
     [Serializable]
     public abstract class NaturalKeyStringString
     {
-        public NaturalKeyStringString() { }
-        public NaturalKeyStringString(string key1, string key2)
+        protected NaturalKeyStringString() { }
+
+        protected NaturalKeyStringString(string key1, string key2)
         {
             Key1 = key1;
             Key2 = key2;
@@ -74,7 +76,7 @@ namespace TC.Domain
         public override bool Equals(object o)
         {
             if (o == null) return false;
-            if (object.ReferenceEquals(this, o)) return true;
+            if (ReferenceEquals(this, o)) return true;
             var id = o as NaturalKeyStringString;
             if (id == null) return false;
             if (Key1 != id.Key1) return false;
@@ -90,7 +92,7 @@ namespace TC.Domain
         //test helper
         public static T GenForTest<T>() where T : NaturalKeyStringString, new()
         {
-            return new T()
+            return new T
             {
                 Key1 = "s1",
                 Key2 = "s2"
@@ -101,8 +103,9 @@ namespace TC.Domain
     [Serializable]
     public abstract class NaturalKeyStringDateTime
     {
-        public NaturalKeyStringDateTime() { }
-        public NaturalKeyStringDateTime(string key1, DateTime key2)
+        protected NaturalKeyStringDateTime() { }
+
+        protected NaturalKeyStringDateTime(string key1, DateTime key2)
         {
             Key1 = key1;
             Key2 = key2;
@@ -114,7 +117,7 @@ namespace TC.Domain
         public override bool Equals(object o)
         {
             if (o == null) return false;
-            if (object.ReferenceEquals(this, o)) return true;
+            if (ReferenceEquals(this, o)) return true;
             var id = o as NaturalKeyStringDateTime;
             if (id == null) return false;
             if (Key1 != id.Key1) return false;
@@ -130,7 +133,7 @@ namespace TC.Domain
         //test helper
         public static T GenForTest<T>() where T : NaturalKeyStringDateTime, new()
         {
-            return new T()
+            return new T
             {
                 Key1 = "s1",
                 Key2 = DateTime.Now
@@ -141,8 +144,9 @@ namespace TC.Domain
     [Serializable]
     public abstract class NaturalKeyStringStringDateTime
     {
-        public NaturalKeyStringStringDateTime() { }
-        public NaturalKeyStringStringDateTime(string key1, string key2, DateTime key3)
+        protected NaturalKeyStringStringDateTime() { }
+
+        protected NaturalKeyStringStringDateTime(string key1, string key2, DateTime key3)
         {
             Key1 = key1;
             Key2 = key2;
@@ -156,7 +160,7 @@ namespace TC.Domain
         public override bool Equals(object o)
         {
             if (o == null) return false;
-            if (object.ReferenceEquals(this, o)) return true;
+            if (ReferenceEquals(this, o)) return true;
             var id = o as NaturalKeyStringStringDateTime;
             if (id == null) return false;
             if (Key1 != id.Key1) return false;
@@ -175,7 +179,7 @@ namespace TC.Domain
         //test helper
         public static T GenForTest<T>() where T : NaturalKeyStringStringDateTime, new()
         {
-            return new T()
+            return new T
             {
                 Key1 = "s1",
                 Key2 = "s2",
@@ -187,8 +191,9 @@ namespace TC.Domain
     [Serializable]
     public abstract class NaturalKeyStringStringStringString
     {
-        public NaturalKeyStringStringStringString() { }
-        public NaturalKeyStringStringStringString(string key1, string key2, string key3, string key4)
+        protected NaturalKeyStringStringStringString() { }
+
+        protected NaturalKeyStringStringStringString(string key1, string key2, string key3, string key4)
         {
             Key1 = key1;
             Key2 = key2;
@@ -205,7 +210,7 @@ namespace TC.Domain
         public override bool Equals(object o)
         {
             if (o == null) return false;
-            if (object.ReferenceEquals(this, o)) return true;
+            if (ReferenceEquals(this, o)) return true;
             var id = o as NaturalKeyStringStringStringString;
             if (id == null) return false;
             if (Key1 != id.Key1) return false;
@@ -226,7 +231,7 @@ namespace TC.Domain
         //test helper
         public static T GenForTest<T>() where T : NaturalKeyStringStringStringString, new()
         {
-            return new T()
+            return new T
             {
                 Key1 = "s1",
                 Key2 = "s2",
@@ -239,8 +244,9 @@ namespace TC.Domain
     [Serializable]
     public abstract class NaturalKeyStringDateTimeDateTimeInt32
     {
-        public NaturalKeyStringDateTimeDateTimeInt32() { }
-        public NaturalKeyStringDateTimeDateTimeInt32(string key1, DateTime key2, DateTime key3, Int32 key4)
+        protected NaturalKeyStringDateTimeDateTimeInt32() { }
+
+        protected NaturalKeyStringDateTimeDateTimeInt32(string key1, DateTime key2, DateTime key3, Int32 key4)
         {
             Key1 = key1;
             Key2 = key2;
@@ -256,7 +262,7 @@ namespace TC.Domain
         public override bool Equals(object o)
         {
             if (o == null) return false;
-            if (object.ReferenceEquals(this, o)) return true;
+            if (ReferenceEquals(this, o)) return true;
             var id = o as NaturalKeyStringDateTimeDateTimeInt32;
             if (id == null) return false;
             if (Key1 != id.Key1) return false;
@@ -277,7 +283,7 @@ namespace TC.Domain
         //test helper
         public static T GenForTest<T>() where T : NaturalKeyStringDateTimeDateTimeInt32, new()
         {
-            return new T()
+            return new T
             {
                 Key1 = "s1",
                 Key2 = DateTime.Now,

@@ -1,12 +1,13 @@
 using System;
 
-namespace TC.Doman 
+namespace TC.Maps.Entitites 
 {
     [Serializable]
     public abstract class NaturalKeyStringDateTime
     {
-        public NaturalKeyStringDateTime() { }
-        public NaturalKeyStringDateTime(string key1, DateTime key2)
+        protected NaturalKeyStringDateTime() { }
+
+        protected NaturalKeyStringDateTime(string key1, DateTime key2)
         {
             Key1 = key1;
             Key2 = key2;
@@ -18,7 +19,7 @@ namespace TC.Doman
         public override bool Equals(object o)
         {
             if (o == null) return false;
-            if (object.ReferenceEquals(this, o)) return true;
+            if (ReferenceEquals(this, o)) return true;
             var id = o as NaturalKeyStringDateTime;
             if (id == null) return false;
             if (Key1 != id.Key1) return false;
@@ -34,7 +35,7 @@ namespace TC.Doman
         //test helper
         public static T GenForTest<T>() where T : NaturalKeyStringDateTime, new()
         {
-            return new T()
+            return new T
             {
                 Key1 = "s1",
                 Key2 = DateTime.Now
@@ -94,6 +95,6 @@ namespace TC.Doman
         public virtual string DR3B2 { get; set; }
         public virtual string DR4B1 { get; set; }
         public virtual string DR4B2 { get; set; }
-        public virtual System.Guid Tenant_ID { get; set; }
+        public virtual Guid Tenant_ID { get; set; }
     }
 }

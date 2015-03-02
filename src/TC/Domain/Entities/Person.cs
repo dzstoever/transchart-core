@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using TC.Domain.SolidOrganTransplant;
-using Zen.Core;
+using TC.Domain.Components;
 
-namespace TC.Domain 
+namespace TC.Domain.Entities 
 {
     public class Person : MultiEnteredByEntity<string> 
     {           

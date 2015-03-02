@@ -1,10 +1,8 @@
-using System;
-using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Mapping.ByCode;
-using TC.Domain;
+using NHibernate.Mapping.ByCode.Conformist;
+using TC.Domain.Entities;
 
-
-namespace TC.Maps 
+namespace TC.Maps.Entitites 
 {
         
     public class UserMap : ClassMapping<User>, Zen.Data.IDbMap 

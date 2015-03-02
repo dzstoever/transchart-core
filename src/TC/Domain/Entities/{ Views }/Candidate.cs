@@ -1,9 +1,6 @@
 using System;
-using System.Text;
-using System.Collections.Generic;
 
-
-namespace TC.Domain 
+namespace TC.Domain.Entities 
 {
     /// <summary>
     /// A set of information for a given person in the context of a specific episode.

@@ -81,8 +81,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessModel\PatientBMO.cs" />
+    <Compile Include="Domain\Components\AddressInfo.cs" />
     <Compile Include="Domain\Components\ContactInfo.cs" />
     <Compile Include="Domain\Components\Demographics.cs" />
+    <Compile Include="Domain\Components\NameInfo.cs" />
+    <Compile Include="Domain\Components\PhoneInfo.cs" />
     <Compile Include="Domain\Components\UnosData.cs" />
     <Compile Include="Domain\Entities\[ Episode ]\SolidOrganTransplant\TxPerson.cs" />
     <Compile Include="Domain\Components\Diagnosis.cs" />

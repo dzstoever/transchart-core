@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using TC.DataModels;
+using TC.Svcs.DataContracts;
 using Zen.Data.QueryModel;
 
 namespace TC.Website.ApiControllers

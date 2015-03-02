@@ -1,4 +1,4 @@
-namespace TC.Domain.SolidOrganTransplant
+namespace TC.Domain.Entities.SolidOrganTransplant
 {
     public static class SolidOrganTransplant
     {
