@@ -82,7 +82,7 @@ namespace TC.Utility
 
         private string GetDefaultConnectionStringForServerType(ServerType serverType)
         {
-            return StringConstants.SQL_CONN_STR_TEMPLATE;
+            return StringConstants.SQLConnStrTemplate;
 
             //switch (serverType)
             //{
