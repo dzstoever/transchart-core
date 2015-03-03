@@ -6,7 +6,7 @@ using TC.Domain;
 using TC.Domain.Entities;
 using Zen.Data.QueryModel;
 
-namespace TC.Tests.Domain
+namespace TC.Test.Domain.Entities
 {
     //
     // basic CRUD tests for the whole domain

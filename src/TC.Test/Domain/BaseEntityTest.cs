@@ -8,7 +8,7 @@ using NHibernate.Mapping.ByCode;
 using Zen.Core;
 using Zen.Data;
 
-namespace TC.Tests
+namespace TC.Test.Domain
 {
     public abstract class BaseEntityTest<T, TId> where T : class, IDomainEntity<TId>, new()
     {

@@ -1,6 +1,6 @@
 ﻿using Zen.Data;
 
-namespace TC.Tests.Domain
+namespace TC.Test.Domain
 {
     
     public class MappedEntity1 : NHMappedEntity<long> { }
